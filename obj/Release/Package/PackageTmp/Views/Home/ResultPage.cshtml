@@ -1,0 +1,1146 @@
+﻿
+@{
+    ViewBag.Title = "Result Page";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_auDeckLayout.cshtml";
+
+
+}
+
+<style>
+    .primarycolor {
+        /* set border radius on hover */
+        background: #fdb819;
+    }
+</style>
+
+<!-- Page Title -->
+@*<div class="page-title-area">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/footer-car.png" alt="Title">
+        <div class="container">
+            <div class="page-title-content">
+                <h2>Your Offer</h2>
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chevron-right'></i>
+                    </li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+<!-- End Page Title -->
+
+<section class="quality-area quality-area-four blog-area pt-5" id="offerprice_section">
+    <div class="quality-shape" hidden>
+        <img src="~/Content/auDeckTheme/assets/img/car-shape.png" alt="Quality">
+    </div>
+    <div class="container-fluid p-0 my-auto">
+
+        <div class="row m-0 text-center">
+            <div class="col-lg-6 p-0 my-auto">
+                <div class="quality-img">
+                    @* <img src="~/Content/auDeckTheme/assets/img/about-car.jpg" alt="Quality" class="img-hide-sm" style="border-radius:20px;">*@
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/banner-front.png" alt="Quality" class="img-hide-sm" style="border-radius:20px;top:17px!important;visibility:visible;max-width:85%;padding-bottom:62px!important;height:80%!important">
+                </div>
+            </div>
+            @*<div class="col-lg-3 p-0 my-auto">
+
+                </div>*@
+
+            <div class="col-lg-6 p-0 my-auto">
+                <div class="quality-content" style="max-width:100%; margin-left:0px;">
+                    <div class="section-title" id="offer_div">
+                        <div class="d-flex justify-content-center">
+                            <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_cyn8dgwy.json" background="transparent" speed="1" style="width: 300px; height: 250px;" autoplay></lottie-player>
+                        </div>
+                        @{
+                            if (ViewBag.Price != "" && ViewBag.Price != null)
+                            {
+                                <h2 class="text-center pb-4">
+                                    <span style="color:#FDB819">Congrats!</span> you got an Offer
+                                </h2>
+                                @*<div class="cmn-btn" style="border-radius: 11px;margin-left:100px">*@
+
+                                //feedback offer design
+
+                                <div class="row m-md-0 m-2">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4 justify-content-center">
+                                        <h1 class="custom-heading mb-0 text-center">
+                                            <span id="showPrice" style="color: #333333;"><strong><span style="color:#FDB819;">$</span>&nbsp;@ViewBag.Price</strong></span>
+                                        </h1>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+
+                                <div class="row m-md-0 m-2" style="margin-top:22px!important">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6 justify-content-center ">
+                                        <center>
+                                            @*<button class="btn btn-primary" style="margin-right: 0px !important; border-radius: 30px !important; width: 102% !important; height: 53px !important; background-color: #fdb819!important;border:none" type="button" onclick="ShowSellerDetail(0)">*@
+                                            <button class="btn btn-primary" style="margin-right: 0px !important; border-radius: 30px !important; width: 102% !important; height: 53px !important; background-color: #fdb819ba !important; border: none" type="button" onclick="ShowSellerDetail(0)">
+                                                @*<i class="bx bx-meteor"></i>*@
+                                                Accept Offer
+                                            </button>
+                                        </center>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+
+
+                                <div class="row m-md-0" style="margin-top:22px!important">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-6 justify-content-center">
+                                        <center>
+                                            <button class="btn btn-primary bg-red" style="margin-right: 0px !important; background-color:#adadad !important; border-radius: 30px !important; width: 102% !important; height: 53px !important; border: none;" type="button" onclick="ShowSellerDetail(1)" href="#">
+                                                <i class="bx bx-meteor"></i>
+                                                Reject & list
+                                            </button>
+                                        </center>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+
+
+
+                                //feedback offer design
+
+                                <div class="row m-md-0 m-2" hidden>
+                                    <div class="col-md-5 col-lg-5 col-12 d-flex justify-content-md-end justify-content-center">
+                                        <a class="banner-btn-left" type="button" onclick="ShowSellerDetail(0)" href="#">
+                                            <div class="text-center" id="priceshow" style=" background: #FDB819; border-radius: 11px; padding: 6px; padding-left: 30px; padding-right: 30px;">
+                                                <h3 class="custom-heading mb-0 text-center">
+                                                    <span id="showPrice" style="color:black;"><span style="color:#FDB819;">$</span><strong>@ViewBag.Price</strong></span>
+                                                </h3>
+                                                <p class="text-center mt-0 price-font" style="color:white">Accept Offer</p>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-md-2 col-lg-2 col-12 m-auto">
+                                        <h5 class="text-center pt-2 pt-md-0 pt-lg-0">
+                                            <strong>OR</strong>
+                                        </h5>
+                                    </div>
+
+                                    <div class="col-md-5 col-lg-5 col-12 d-flex justify-content-md-start justify-content-center">
+                                        <a class="banner-btn-left text-danger" type="button" onclick="ShowSellerDetail(1)" href="#">
+                                            <div id="priceshow" style=" background-color: red; border-radius: 11px; padding: 6px;   width:158px;">
+                                                <h3 class="custom-heading mb-0 text-center">
+                                                    @*<span hidden id="showPrice" style="color:black;"><strong>@ViewBag.Price</strong></span>*@
+                                                    <span id="showPrice" style="color: black; font-size: 17px;"><strong>Reject & list</strong></span>
+                                                </h3>
+                                                <p class="text-center mt-0 price-font" style="color:white ;visibility:hidden">Reject & list</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <h2 class="text-center pb-4">@ViewBag.msg</h2>
+                                <div class="cmn-btn text-center">
+                                    <a class="banner-btn-left" href="@Url.Action("Index","Home")">
+                                        <i class="bx bx-chevron-left"></i>BACK TO HOME
+                                    </a>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        @*<div class="container" hidden>
+                <div class="row mt-4 ml-2">
+                    @{
+                        var i = 0;
+                        if (ViewBag.Json != null && ViewBag.Json.Count > 0)
+                        {
+                            foreach (var item in ViewBag.Json)
+                            {
+                                i = i + 1;
+                                <div class="col-md-4">
+                                    <h2>Send Data @i</h2>
+                                    @item;
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>*@
+
+
+
+    </div>
+</section>
+
+
+<!-- Contact Area -->
+<section class="contact-area pt-100 pb-70" id="oferDetail_section" style="display:none;">
+    <div class="container">
+        <form action="@Url.Action("PostUserDetails","Home")" id="offerDetailForm" enctype="multipart/form-data" method="post">
+
+            <input hidden name="email" id="register_email">
+            <input hidden name="password" id="register_password">
+            <input hidden name="Islogin" id="Is_login">
+
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="contact-item contact-right">
+                        @*<h3>Submit Car Detail</h3>
+                            <p style="display:none" id="AcceptOfferText">After Accepting Our Offer Dispatch team is reviewing Your pictures and titlework Expect a call shortly about your selection.</p>
+                            <p id="RejectOfferText" class="text-danger" style="display:none">
+                                Sorry our Offer wasn’t good enough, but we can help. List
+                                now! to our millions of customers around the world and
+                                received daily or weekly offers. Pay $150.00 when you sell.
+                            </p>
+
+                            <ul>
+                                <li>
+                                    <i class='bx bx-location-plus'></i>
+                                    Address: @ViewBag.usercity,@ViewBag.userstate,@ViewBag.userzipcode
+                                </li>
+                                <li>
+                                    <i class='bx bx-mail-send'></i>
+                                    <a href="mailto:info@audeck.com">
+                                        info@audeck.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <i class='bx bx-phone-call'></i>
+                                    <a href="tel:(866) 227-3852">
+                                        (866) 227-3852
+                                    </a>
+                                </li>
+                            </ul>*@
+                        <h3>Submit Car Detail</h3>
+                        <div class="row">
+                            <label style="display:none" id="Required_Alert" class="text-danger">Please fill all required fields<span class="text-danger">*</span></label>
+
+                            <div class="col-sm-4 col-lg-4">
+                                <div class="form-group">
+                                    <label>First Name<span class="text-danger">*</span></label>
+                                    <input type="text" name="FirstName" id="f_name" class="form-control" data-error="Please enter your name" placeholder="Please enter your first name" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+                                <div class="form-group">
+                                    <label>Mid Name<span class="text-danger"></span></label>
+                                    <input type="text" name="MidName" id="mid_name" class="form-control" placeholder="Please enter your mid name" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+                                <div class="form-group">
+                                    <label>Last Name<span class="text-danger">*</span></label>
+                                    <input type="text" name="LastName" id="last_name" class="form-control" data-error="Please enter your Last Name" placeholder="Please enter your last name" required>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="form-group">
+                                <label>Vehicle Pickup Address<span class="text-danger">*</span></label>
+                                <input type="text" max="15" id="pickup_address"  name="VehicleAddress" class="form-control" data-error="Please enter your Vehicle PickUp Address" placeholder="Please enter your Vehicle PickUp Address" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-lg-12">
+                            <div class="form-group">
+                                <label>Phonenumber</label>
+                                <input type="text" name="UserContact" class="form-control" placeholder="phonenumber" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            @*city zip row*@
+
+                            @if (ViewBag.usercity != "" && ViewBag.userstate != "" && ViewBag.userzipcode != "")
+                            {
+                                <div class="col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <input type="text" readonly value="@ViewBag.usercity" name="City" id="name" class="form-control">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>State</label>
+                                        <input type="text" readonly name="State" value="@ViewBag.userstate" id="name" class="form-control">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>ZipCode</label>
+                                        <input type="text" readonly value="@ViewBag.userzipcode" name="ZipCode" id="name" class="form-control">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>City<span class="text-danger">*</span></label>
+                                        <input type="text" name="City" id="name" class="form-control">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>State<span class="text-danger">*</span></label>
+                                        <input type="text" name="State" id="name" class="form-control">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>ZipCode<span class="text-danger">*</span></label>
+                                        <input type="text" name="ZipCode" id="name" class="form-control">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                            }
+
+                        </div>
+
+                        <div class="col-md-12 col-lg-12">
+                            <div id="SignatureDiv" style="text-align: -webkit-center;">
+                                <div id="userSign">
+                                    <div class="form-group">
+                                        <label><strong>Signature pad:</strong></label>
+                                        <div id="divPopUpSignContract">
+                                            <div class="">
+                                                <div id="div_signcontract" style="width:100%!important">
+                                                    <canvas style="width: 100% !important;" id="canvas">Canvas is not supported</canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span id="errSignSpan" style="display: none; color: red;"></span>
+                                        <a onclick="init_Sign_Canvas()" class="btn btn-primary" style="margin-left:-298px!important">Clear</a>
+                                    </div>
+                                    <input id="signedImageUrl" name="SignedImageUrl" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                    @*<div class="cmn-btn w-100"><a onclick="ShowOfferDetail(3)" class="mt-3 banner-btn-left"><i class="bx bxs-purchase-tag rounded"></i> Go Back TO Offer</a></div>*@
+
+
+
+
+
+
+
+
+                </div>
+                <div class="col-lg-6" id="AcceptOfferImages" style="display:none">
+
+                    <div class="contact-item contact-right">
+                        <h3>Title Holder Info</h3>
+                        @*<form action="@Url.Action("PostUserDetails","Home")" id="offerDetailForm" enctype="multipart/form-data" method="post">*@
+                        <input hidden id="OfferStatus" value="" />
+                        <div class="row">
+                            @*old form content*@
+
+
+                            @*old form content*@
+
+
+
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Open-Front-Hood-Image.png" />
+                                @*<img src="~/Content/auDeckTheme/assets/img/cartiteimages/Front-Hood-Image.png" />*@
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Front Of Vehicle</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Back.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Back Of Vehicle</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/ID-CARD-Front.png" />
+                                @*<img src="~/Content/auDeckTheme/assets/img/cartiteimages/ID-CARD-Front.png" />*@
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Id Card Front Side</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/ID-CARD-Back.png" />
+                                @*<img src="~/Content/auDeckTheme/assets/img/cartiteimages/ID-CARD-Back.png" />*@
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Id Card Back Side</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            @*<div hidden class="col-sm-4 col-lg-4" id="append_file">
+                                    <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Title-Front.png" />
+                                    <div class="form-group" id="accept_OfferFileupload">
+                                        <label>Front Title</label>
+                                        <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                        <div class="help-block with-errors"></div>
+
+                                    </div>
+                                </div>
+                                <div hidden class="col-sm-4 col-lg-4" id="append_file">
+                                    <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Title-Back.png" />
+                                    <div class="form-group" id="accept_OfferFileupload">
+                                        <label>Back Title</label>
+                                        <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                        <div class="help-block with-errors"></div>
+
+                                    </div>
+                                </div>*@
+
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Documents.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Document</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            @*<div hidden class="col-sm-4 col-lg-4" id="append_file">
+                                    <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Live-walk-around-video.png" />
+                                    <div class="form-group" id="accept_OfferFileupload">
+                                        <label>Live Walk Around </label>
+                                        <input type="file" min="10" name="Images" title="please upload mp4 type video" id="email" class="form-control" data-error="Please  Upload a short video" placeholder="Please upload your Vehicle video">
+                                        <div class="help-block with-errors"></div>
+
+                                    </div>
+                                </div>*@
+
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+                                <button type="button" onclick="ChangeFormAction()" id="accept_rejectform" class="contact-btn btn">
+                                    Submit
+                                </button>
+                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+
+                            </div>
+                            @*<div class="col-md-12 col-lg-12">
+                                    <button type="submit" class="contact-btn btn">
+                                        Send Message
+                                    </button>
+                                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                    <div class="clearfix"></div>
+                                </div>*@
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-lg-6" id="RejectOfferImages" style="display:none">
+
+                    <div class="contact-item contact-right">
+                        <h3>Title Holder Info</h3>
+                        @*<form action="@Url.Action("PostUserDetails","Home")" id="offerDetailForm" enctype="multipart/form-data" method="post">*@
+                        <input hidden id="OfferStatus" value="" />
+                        <div class="row">
+                            @*old form content*@
+
+
+                            @*old form content*@
+
+
+
+                            <div hidden class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Open-Front-Hood-Image.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Front Of Title</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div hidden class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Back.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Back Of Title</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/ID-CARD-Front.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Id Card Front Side</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/ID-CARD-Back.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Id Card Back Side</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Documents.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Document</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Title-Front.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Front Title</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Title-Back.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Back Title</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Left-Side-Front-interior-image.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Right Side Front Interior</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Left-Side-Back-interior-image.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Right Side Rear Interior</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Interior-Image.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Interior</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Odometer.png" />
+
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>OdoMeter</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Left-Side-Front.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Left Side Front </label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Left-Side-Rear.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Left Side Rear</label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Right-Side-Front.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Right Side Front </label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Right-Side-Rear.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Right Side Rear </label>
+                                    <input type="file" min="10" name="Images" title="Please upload jpg,png,pdf,jpeg pictures only! " id="email" accept=".jpeg,.jpg,.pdf,.png" class="form-control" data-error="Please enter Upload Images" placeholder="Please enter your Vehicle PickUp Address">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                                <img src="~/Content/auDeckTheme/assets/img/cartiteimages/Live-walk-around-video.png" />
+                                <div class="form-group" id="accept_OfferFileupload">
+                                    <label>Live Walk Around </label>
+                                    <input type="file" min="10" name="Images" title="please upload mp4 type video" id="email" class="form-control" data-error="Please  Upload a short video" placeholder="Please upload your Vehicle video">
+                                    <div class="help-block with-errors"></div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4" id="append_file">
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+                                <button type="button" onclick="ChangeFormAction()" id="accept_rejectform" class="contact-btn btn">
+                                    Submit
+                                </button>
+                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="col-sm-4 col-lg-4">
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </form>
+
+        <div class="cmn-btn w-100"><a onclick="ShowOfferDetail(3)" class="mt-3 banner-btn-left"><i class="bx bxs-purchase-tag rounded"></i> Go Back TO Offer</a></div>
+
+    </div>
+</section>
+
+
+<!-- Login -->
+<div class="login-area ptb-100 mb-4" id="loginSection" style="display:none;">
+    <div class="container">
+        <div class="login-item">
+            @*<form>*@
+            <label id="InvalidUser_Credentials" class="text-danger"></label>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="text" id="loginEmail" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="loginPasword" class="form-control" placeholder="Password">
+            </div>
+            @*</form>*@
+            <div class="text-center">
+                <button type="button" onclick="CheckUserExist()" class="btn login-btn">Login</button>
+            </div>
+            <span>New member? <a onclick="ShowLoginSignupSection(2)">Register Now</a></span>
+            <span>Submit Without Login? <a onclick="SubmitUserRegisterDetail(0)">Submit</a></span>
+
+        </div>
+    </div>
+</div>
+<!-- End Login -->
+<!-- Signup -->
+<div class="login-area ptb-100 mb-4" id="signUp_Section" style="display:none;">
+    <div class="container">
+        <div class="login-item">
+            <label style="display:none" id="register_credentials" class="text-danger">Please must be enter your email and password:</label>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="useremail" class="form-control" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" id="userpassword" class="form-control" placeholder="Enter Password">
+            </div>
+            <div class="text-center">
+                <button type="button" onclick="SubmitUserRegisterDetail(1)" class="btn login-btn">Register</button>
+            </div>
+            @*</form>*@
+            <span>Already a member? <a onclick="ShowLoginSignupSection(1)">Sign In</a></span>
+        </div>
+    </div>
+</div>
+
+<!-- End signup -->
+
+<!-- Data Section hidden -->
+@*<section class="quality-area quality-area-four blog-area pt-2" id="hiddenData_section">
+        <div class="quality-shape" hidden>
+            <img src="~/Content/auDeckTheme/assets/img/car-shape.png" alt="Quality">
+        </div>
+        <div class="container px-3">
+            <div class="row mt-1 ml-2">
+                @{
+                    var j = 0;
+                    if (ViewBag.Json != null && ViewBag.Json.Count > 0)
+                    {
+                        foreach (var item in ViewBag.Json)
+                        {
+                            j = j + 1;
+                            <div class="col-md-4">
+                                <h2>Send Data @j</h2>
+                                @item;
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </section>*@
+
+<script>
+    function ShowOfferDetail()
+    {
+        $('#oferDetail_section').css('display', 'none');
+        $('#offerprice_section').css('display', 'block');
+        $('#hiddenData_section').css('display', 'block');
+
+    }
+    function ShowLoginSignupSection(value)
+    {
+        if (value == 1) {
+            $('#signUp_Section').css('display', 'none');
+            $('#loginSection').css('display', 'block');
+        }
+        else
+        {
+            $('#loginSection').css('display', 'none');
+            $('#signUp_Section').css('display', 'block');
+
+        }
+
+
+    }
+    function ShowSellerDetail(val) {
+        debugger;
+
+        if (val == 1) {
+            $('#AcceptOfferImages').css('display', 'none');
+            $('#RejectOfferImages').css('display', 'block');
+
+            var rejectOfferFile = `<div class="form-group">
+                                        <label>Upload Images<span class="text-danger">*</span><span id="larger_file" class="text-danger"></span></label>
+                                        <input type="file" min="10" name="Images" onchange="checkfilesize()"  id="rejected_file"  required class="form-control" data-error="Please enter Upload Images">
+                                        <div class="help-block with-errors"></div>
+                                        <label>Note! Upload Require The Following video</label><br />
+
+
+                                        <span id="upload_video">upload short video of running car if any</span><br />
+                                        <span id="upload_video">Note upload a video less than 40 mb!</span>
+
+                                    </div>`;
+            //$("#rejected_Div").append(rejectOfferFile);
+        }
+
+        else {
+            $('#RejectOfferImages').css('display', 'none');
+
+            $('#AcceptOfferImages').css('display', 'block');
+        }
+
+        $("#OfferStatus").val(val);
+        $('#oferDetail_section').css('display', 'block');
+        $('#offerprice_section').css('display', 'none');
+        $('#hiddenData_section').css('display', 'block');
+
+    }
+
+    function ChangeFormAction() {
+        debugger;
+        var FirstName = $("#f_name").val();
+        var LastName = $("#last_name").val();
+        var VehicleAddress = $("#pickup_address").val();
+
+        if (FirstName == "" || LastName=="" || VehicleAddress=="")
+        {
+            $('#Required_Alert').show();
+
+            return;
+        }
+
+        $('#Required_Alert').hide();
+
+        var offerstatus = $("#OfferStatus").val();
+        if (offerstatus == 1) {
+            //$('#offerDetailForm').attr('Home', "PostOfferRejectedDetails").submit();
+
+            // append value of signature
+
+            $('#oferDetail_section').css('display', 'none');
+            $('#loginSection').css('display', 'block');
+
+
+            var canvas = $("#canvas").get(0);
+            var imgData = canvas.toDataURL();
+            $('#signedImageUrl').val(imgData);
+            var FileVersionId = $('#signFileId').val();
+            console.log(imgData);
+            console.log(FileVersionId);
+            var file = dataURLtoFile(imgData, 'sign.png');
+            $('#signedImageData').val(file.name);
+
+            // end signature
+
+            //$("#offerDetailForm").attr("action", '@Url.Action("PostOfferRejectedDetails", "Home")').submit();
+
+
+        }
+        else
+        {
+            $('#oferDetail_section').css('display', 'none');
+            $('#loginSection').css('display', 'block');
+            // append value of signature
+
+            var canvas = $("#canvas").get(0);
+            var imgData = canvas.toDataURL();
+            $('#signedImageUrl').val(imgData);
+            var FileVersionId = $('#signFileId').val();
+            console.log(imgData);
+            console.log(FileVersionId);
+            var file = dataURLtoFile(imgData, 'sign.png');
+            $('#signedImageData').val(file.name);
+
+            // end signature
+
+            //$('#offerDetailForm').submit();
+
+
+        }
+        // $("#accept_offer_div").hide();
+    }
+
+    function SubmitUserRegisterDetail(isRegister)
+    {
+        debugger;
+        var offerstatus = $("#OfferStatus").val();
+        var email = $("#useremail").val();
+        var password = $("#userpassword").val();
+
+        if (isRegister == 1)
+        {
+            if (email == "" || password == "")
+            {
+                $('#register_credentials').show();
+                return;
+            }
+
+            
+
+            
+
+        }
+
+        $("#register_email").val(email);
+        $("#register_password").val(password);
+
+        if (offerstatus == 1) {
+
+            $("#Is_login").val("");
+
+            $("#offerDetailForm").attr("action", '@Url.Action("PostOfferRejectedDetails", "Home")').submit();
+
+
+        }
+        else
+        {
+            $("#Is_login").val("");
+
+            $('#offerDetailForm').submit();
+
+        }
+
+    }
+
+    function checkfilesize() {
+        debugger;
+        // Get the selected file input element
+        var fileInput = $('#rejected_file')[0]; // Replace `#file-input` with your file input selector
+
+        // Check if a file is selected
+        if (fileInput.files.length > 0) {
+            // Get the selected file
+            var file = fileInput.files[0];
+
+            // Check if the file size is less than 15 MB (15,000,000 bytes)
+            if (file.size < 40000000) {
+                console.log("File size is less than 15 MB");
+            }
+            else {
+                fileInput.value='';
+                //fileInput.val(null);
+                $("#larger_file").text("Please Select a file less than 40 mb!");
+            }
+        }
+        else {
+            fileInput.val('');
+        }
+        $("#larger_file").fadeout(4000);
+    }
+
+</script>
+
+@section Scripts{
+    <script>
+        var isSign = false;
+        var leftMButtonDown = false;
+        jQuery(function () {
+            //Initialize sign pad
+            init_Sign_Canvas();
+        });
+
+        function openSignPad() {
+            $('#divPopUpSignContract').show();
+        }
+        function closeSignPad() {
+            $('#divPopUpSignContract').hide();
+        }
+        function openSignImage() {
+            $('#page').show();
+        }
+        function closeSignImage() {
+            $('#page').hide();
+        }
+        function dataURLtoFile(dataurl, filename) {
+            var arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new File([u8arr], filename, { type: mime });
+        }
+        //submitBtn.addEventListener("click", function (e) {
+        //    var canvas = $("#canvas").get(0);
+        //    var imgData = canvas.toDataURL();
+        //    $('#signedImageUrl').val(imgData);
+        //    var FileVersionId = $('#signFileId').val();
+        //    console.log(imgData);
+        //    console.log(FileVersionId);
+        //    var file = dataURLtoFile(imgData, 'sign.png');
+        //    $('#signedImageData').val(file.name);
+        //});
+
+        function closePopUp() {
+            jQuery('#divPopUpSignContract').popup('close');
+            jQuery('#divPopUpSignContract').popup('close');
+        }
+
+
+        function init_Sign_Canvas() {
+            isSign = false;
+            leftMButtonDown = false;
+            //$("#canvas").width(558);
+            $("#canvas").height(200);
+            $("#canvas").css("border", "1px solid #000");
+            var canvas = $("#canvas").get(0);
+            canvasContext = canvas.getContext('2d');
+            if (canvasContext) {
+                canvasContext.canvas.width = 558; //sizedWindowWidth;
+                canvasContext.canvas.height = 200;
+                canvasContext.fillStyle = "#fff";
+                canvasContext.fillRect(0, 0, 558, 200);
+                //canvasContext.moveTo(50, 150);
+                //canvasContext.lineTo(558 - 50, 150);
+                //canvasContext.stroke();
+                //canvasContext.fillStyle = "#000";
+                canvasContext.font = "20px Poppins";
+                //canvasContext.fillText("x", 40, 155);
+            }
+            // Bind Mouse events
+            $(canvas).on('mousedown', function (e) {
+                if (e.which === 1) {
+                    leftMButtonDown = true;
+                    canvasContext.fillStyle = "#000";
+                    var x = e.pageX - $(e.target).offset().left;
+                    var y = e.pageY - $(e.target).offset().top;
+                    canvasContext.moveTo(x, y);
+                }
+                e.preventDefault();
+                return false;
+            });
+            $(canvas).on('mouseup', function (e) {
+                if (leftMButtonDown && e.which === 1) {
+                    leftMButtonDown = false;
+                    isSign = true;
+                }
+                e.preventDefault();
+                return false;
+            });
+            // draw a line from the last point to this one
+            $(canvas).on('mousemove', function (e) {
+                if (leftMButtonDown == true) {
+                    canvasContext.fillStyle = "#000";
+                    var x = e.pageX - $(e.target).offset().left;
+                    var y = e.pageY - $(e.target).offset().top;
+                    canvasContext.lineTo(x, y);
+                    canvasContext.stroke();
+                }
+                e.preventDefault();
+                return false;
+            });
+            //bind touch events
+            $(canvas).on('touchstart', function (e) {
+                leftMButtonDown = true;
+                canvasContext.fillStyle = "#000";
+                var t = e.originalEvent.touches[0];
+                var x = t.pageX - $(e.target).offset().left;
+                var y = t.pageY - $(e.target).offset().top;
+                canvasContext.moveTo(x, y);
+                e.preventDefault();
+                return false;
+            });
+            $(canvas).on('touchmove', function (e) {
+                canvasContext.fillStyle = "#000";
+                var t = e.originalEvent.touches[0];
+                var x = t.pageX - $(e.target).offset().left;
+                var y = t.pageY - $(e.target).offset().top;
+                canvasContext.lineTo(x, y);
+                canvasContext.stroke();
+                e.preventDefault();
+                return false;
+            });
+            $(canvas).on('touchend', function (e) {
+                if (leftMButtonDown) {
+                    leftMButtonDown = false;
+                    isSign = true;
+                }
+            });
+        }
+
+
+         function CheckUserExist()
+        {
+             debugger;
+             var email = $('#loginEmail').val();
+             var password = $('#loginPasword').val();
+
+             $.ajax({
+            type: 'POST',
+            url:  '@Url.Action("CheckUserExist", "Ajax")', /*"../Ajax/GetUserById",*/
+            dataType: "json",
+            data: {
+                //   2
+                email: email,
+                password: password
+            },
+            dataType: "json",
+                 success: function (result) {
+                     debugger;
+                     if (result == true) {
+                         var offerstatus = $("#OfferStatus").val();
+                         //var email = $("#useremail").val();
+                         //var password = $("#userpassword").val();
+                         $("#register_email").val("");
+                         $("#register_password").val("");
+                         $('#InvalidUser_Credentials').text("");
+
+
+                         $("#register_email").val(email);
+                         $("#register_password").val(password);
+                         $("#Is_login").val(1);
+
+
+                          if (offerstatus == 1) {
+                         
+                              $("#offerDetailForm").attr("action", '@Url.Action("PostOfferRejectedDetails", "Home")').submit();
+                         
+                         
+                          }
+                          else
+                          {
+                              $('#offerDetailForm').submit();
+                         
+                          }
+                         
+                         //return true;
+
+                     }
+                     else {
+                         $("#register_email").val("");
+                         $("#register_password").val("");
+
+                         $('#InvalidUser_Credentials').text("Invalid email or password");
+                         //$('#getInstantOfferUrlOfZipCode').text("Get Instant Offer");
+
+                         //return false;
+
+                     }
+            },
+            error: function () {
+                alert("please try again!");
+            }
+        });
+
+        }
+    </script>
+}

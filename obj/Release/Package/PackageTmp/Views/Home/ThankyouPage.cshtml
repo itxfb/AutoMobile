@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "ThankyouPage";
+    Layout = "~/Views/Shared/_auDeckLayout.cshtml";
+}
+
+
+
+<div class="d-flex justify-content-center mt-4">
+    <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_nu27sfcj.json" background="transparent" speed="1" style="width: 300px; height: 300px;" autoplay></lottie-player>
+</div>
+
+
+
+
+<!-- Coming Soon -->
+<section class="coming-area" style="margin-top:-231px">
+    <div class="coming-item">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="coming-text">
+                        <h1>Thank You...</h1>
+                        @if (ViewBag.offerstatus == 0)
+                        {
+                            <p>Thanks for Accepting Our Offer Dispatch team is reviewing Your pictures and titlework Expect a call shortly. !</p>
+
+                        }
+                        else
+                        {
+                            <p class="text-danger">
+                                Sorry our Offer wasn’t good enough, but we can help. List
+                                now! to our millions of customers around the world and
+                                received daily or weekly offers. Pay $150.00 when you sell !
+                            </p>
+
+                        }
+
+                        @*<div class="row coming-wrap">
+                <div class="col-6 col-sm-6 col-lg-3">
+                    <div class="coming-inner">
+                        <h3 id="days"></h3>
+                        <p>Days</p>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-lg-3">
+                    <div class="coming-inner">
+                        <h3 id="hours"></h3>
+                        <p>Hours</p>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-lg-3">
+                    <div class="coming-inner">
+                        <h3 id="minutes"></h3>
+                        <p>Minutes</p>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-6 col-lg-3">
+                    <div class="coming-inner">
+                        <h3 id="seconds"></h3>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+            </div>*@
+                        @*<ul>
+                <li>
+                    <a href="#">
+                        <i class='bx bxl-facebook'></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxl-twitter'></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxl-linkedin'></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxl-pinterest'></i>
+                    </a>
+                </li>
+            </ul>*@
+                    </div>
+
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="@Url.Action("Index","Admin")">
+                            Go To Dashboard
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Coming Soon -->

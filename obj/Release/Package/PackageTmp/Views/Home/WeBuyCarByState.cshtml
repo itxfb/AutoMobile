@@ -1,0 +1,420 @@
+﻿@using CarSystem.Models
+
+@model List<State>
+
+@{
+    ViewBag.Title = "Car State";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_auDeckLayout.cshtml";
+}
+
+
+<style>
+    /*form styles*/
+    #msform {
+        /*text-align: center;*/
+        position: relative;
+        margin-top: 30px;
+    }
+
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 8px;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+            padding: 20px 30px;
+            box-sizing: border-box;
+            width: 80%;
+            margin: 0 10%;
+            /*stacking fieldsets above each other*/
+            position: relative;
+        }
+
+            /*Hide all except first fieldset*/
+            #msform fieldset:not(:first-of-type) {
+                display: none;
+            }
+
+        /*inputs*/
+        #msform input, #msform textarea {
+            /*padding: 15px;*/
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 13px;
+        }
+
+            #msform input:focus, #msform textarea:focus {
+                -moz-box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: 1px solid #2098ce;
+                outline-width: 0;
+                transition: All 0.5s ease-in;
+                -webkit-transition: All 0.5s ease-in;
+                -moz-transition: All 0.5s ease-in;
+                -o-transition: All 0.5s ease-in;
+            }
+
+        /*buttons*/
+        #msform .action-button {
+            width: 100px;
+            background: #2098ce;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button:hover, #msform .action-button:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #2098ce;
+            }
+
+        #msform .action-button-previous {
+            width: 100px;
+            background: #aCbEd0;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #aCbEd0;
+            }
+
+    /*headings*/
+    .fs-title {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #2C3E50;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
+
+    .fs-subtitle {
+        font-weight: normal;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /*progressbar*/
+    #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        /*CSS counters to number the steps*/
+        counter-reset: step;
+    }
+
+        #progressbar li {
+            list-style-type: none;
+            color: #666;
+            text-transform: uppercase;
+            font-size: 9px;
+            width: 33.33%;
+            float: left;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+            #progressbar li:before {
+                content: counter(step);
+                counter-increment: step;
+                width: 24px;
+                height: 24px;
+                line-height: 26px;
+                display: block;
+                font-size: 12px;
+                color: #333;
+                background: white;
+                border-radius: 25px;
+                margin: 0 auto 10px auto;
+            }
+
+            /*progressbar connectors*/
+            #progressbar li:after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: white;
+                position: absolute;
+                left: -50%;
+                top: 9px;
+                z-index: -1; /*put it behind the numbers*/
+            }
+
+            #progressbar li:first-child:after {
+                /*connector not needed before the first step*/
+                content: none;
+            }
+
+            /*marking active/completed steps blue*/
+            /*The number of the step and the connector before it = blue*/
+            #progressbar li.active:before, #progressbar li.active:after {
+                background: #2098ce;
+                color: white;
+            }
+
+    input[type="submit"] {
+        height: auto
+    }
+
+    .city-container {
+        border-top: 1px solid #eaebf5;
+        border-bottom: -2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    div.cities {
+        border-top: 1px solid #eaebf5;
+        border-bottom: 1px solid #eaebf5;
+    }
+
+    video {
+        border: none !important;
+    }
+</style>
+
+
+
+<!-- Page Title -->
+<div class="page-title-area" style="padding-bottom:0px !important; background-color:transparent; padding-top:88px !important;">
+    @*<img src="~/Content/auDeckTheme/assets/img/home-one/footer-car.png" alt="Title">*@
+    <div class="container">
+        @*<div class="page-title-content">
+                <h2>Get Offer</h2>
+                <ul>
+                    <li>
+                        <a href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li>
+                        <i class='bx bx-chevron-right'></i>
+                    </li>
+                    <li>Get Offer</li>
+                </ul>
+            </div>*@
+        <div class="row page-title-content">
+            <div class="col-md-5 my-auto" style="text-align:left;">
+                <font size="19%"><i class="bx bxs-car-garage"></i></font>
+                <h1 class="text-dark"><strong>We Buy Cars For Cash</strong></h1>
+                <p>Guaranteed. Simple. Trusted.</p>
+                <div class="cmn-btn w-100"><a href="#" class="mt-3 banner-btn-left"><i class="bx bxs-purchase-tag rounded"></i> Click! To get offer of your car</a></div>
+            </div>
+            <div class="col-md-7 mt-3 mt-md-0">
+                <video class="w-100" autoplay loop muted>
+                    <source src="~/Content/auDeckTheme/assets/img/home-one/work/huge.mp4" type="video/mp4" />
+                </video>
+            </div>
+            @*<div class="col-md-4 bg-white rounded-2 p-4">
+                    <form class="submitForm" method="post">
+                        <div class="row">
+                            <div class="col-md-6 pb-2">
+                                <select class="form-select " id="getMake" name="Make">
+                                    <option value="" selected>Select Year</option>
+                                    <option>2001</option>
+                                    <option>2002</option>
+                                    <option>2003</option>
+                                    <option>2004</option>
+                                    <option>2005</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 pb-2">
+                                <select class="form-select " id="getMake" name="Make">
+                                    <option value="" selected>Select Make</option>
+                                    <option>ACURA</option>
+                                    <option>ALFA ROMEO</option>
+                                    <option>AMERICAN GENERAL</option>
+                                    <option>AMERICAN MOTORS</option>
+                                    <option>ASSEMBLY</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 pb-2">
+                                <select class="form-select " id="getMake" name="Make">
+                                    <option value="" selected>Model</option>
+                                    <option>ACURA</option>
+                                    <option>ALFA ROMEO</option>
+                                    <option>AMERICAN GENERAL</option>
+                                    <option>AMERICAN MOTORS</option>
+                                    <option>ASSEMBLY</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 pb-2">
+                                <select class="form-select " id="getMake" name="Make">
+                                    <option value="" selected>Submodel</option>
+                                    <option>ACURA</option>
+                                    <option>ALFA ROMEO</option>
+                                    <option>AMERICAN GENERAL</option>
+                                    <option>AMERICAN MOTORS</option>
+                                    <option>ASSEMBLY</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6"><input type="text" class="form-control" placeholder="Car Zip Code" /></div>
+                            <div class="col-md-6"><input type="text" id="phone" name="phone" class="form-control" placeholder="(555) 555-5555"/></div>
+                            <div class="col-12 mt-3"><a href="#" class="btn btn-primary w-100">Get Offer</a></div>
+                        </div>
+                    </form>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Offer AREA START -->
+<div class="blog-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1><strong>Sell Your Car for Cash in Your Desire State</strong></h1>
+                <p>
+                    CarSystem is the most stress-free place to sell your car for cash from any city or town in California! We buy cars throughout California,
+                    making it easy to sell your car fast no matter where you’re located or what condition your car is in.
+                </p>
+
+                <h5 class="py-2"><img src="~/Content/auDeckTheme/assets/img/home-one/work/Location_Icon.svg" alt="location" /><strong>If you’re located in any state and wondering ‘Who buys cars near me?</strong></h5>
+                <p class="pb-2">Give CarSystem a call to get the most cash for your car possible. Get an offer from one of our friendly team members at our toll-free number (866) 227-3852 or you can Get An Offer instantly online. As the best car buyer in California, we’re the most hassle-free way of selling cars in any condition. We buy any cars in CA including sedans, coupes, trucks, vans, or SUVs. Wheelzy makes selling used cars so easy, that we don’t even need to see your car in person to make you a guaranteed and fair offer.</p>
+                <p>To see what your car is worth in your state, fill out our simple online form or give us a call to get a guaranteed offer in minutes to sell your car in CA. One of our friendly California car buyer team members will reach out to confirm our cash offer for your car, so you can speak with a real person and we can answer any questions you might have about selling used cars to Wheelzy. If you accept our guaranteed offer, you can sell your car as fast as you’d like to. Our knowledgeable California car buyers will arrange a pick-up time whenever is most convenient for your schedule. Our trust tow driver will arrive at the set time to pay you cash for your car on the spot and tow your car away for free.</p>
+                <h4 class="mt-3">Recently sold in <span>California:</span></h4>
+                <section class="engineer-area pt-3 pb-5">
+                    <div class="container  ps-0 pe-0">
+                        @*<div class="section-title">
+                                <span class="sub-title">Cars List</span>
+                                <h2>
+                                    Sell Your Car Like These Customers!
+                                </h2>
+                            </div>*@
+                        <div class="engineer-slider owl-theme owl-carousel">
+                            <div class="engineer-item">
+                                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/1.jpg" alt="Engineer">
+                                <div class="engineer-bottom">
+                                    <h3>2010 Ford Edge.</h3>
+                                    <span><h6>Price: <b>$1,200</b></h6></span>
+                                </div>
+                            </div>
+                            <div class="engineer-item">
+                                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/2.jpg" alt="Engineer">
+                                <div class="engineer-bottom">
+                                    <h3>2001 Mercedes-Benz C</h3>
+                                    <span><h6>Price: <b>$222</b></h6></span>
+                                </div>
+                            </div>
+                            <div class="engineer-item">
+                                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/3.jpg" alt="Engineer">
+                                <div class="engineer-bottom">
+                                    <h3>2006 Hyundai Tucson</h3>
+                                    <span><h6>Price: <b>$400</b></h6></span>
+                                </div>
+                            </div>
+                            <div class="engineer-item">
+                                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/4.jpg" alt="Engineer">
+                                <div class="engineer-bottom">
+                                    <h3>2000 Dodge Grand Caravan</h3>
+                                    <span><h6>Price: <b>$300</b></h6></span>
+                                </div>
+                            </div>
+                            <div class="engineer-item">
+                                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/5.jpg" alt="Engineer">
+                                <div class="engineer-bottom">
+                                    <h3>2003 Mercury Sable Sedan</h3>
+                                    <span><h6>Price: <b>$225</b></h6></span>
+                                </div>
+                            </div>
+                            <div class="engineer-item">
+                                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/6.jpg" alt="Engineer">
+                                <div class="engineer-bottom">
+                                    <h3>BMW 745li</h3>
+                                    <span><h6>Price: <b>$435</b></h6></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <h1><strong>Get Cash for Cars Fast in <span>CA</span></strong></h1>
+                <p>
+                    With CarSystem, you get paid the guaranteed payment amount right on the spot, when it’s removed for free from any California location.
+                    Most of the time we buy cars in the form of a cashier’s check which is equivalent to cash and can be cashed the same day.
+                    Depending on the area, sometimes we are able to pay cash for cars. When you sell your car in CA to Wheelzy,
+                    you will NEVER have to pay any fees. We take care of everything, so there are no dealer sale fees, no title transfer fees,
+                    and no car removal fees in California! This means you get the most cash for cars in CA when you sell your car to us and we’ll
+                    pick up your car for free from anywhere in California. Wheelzy makes it easy to trade both gently used cars for cash and junk cars for cash in California.
+                </p>
+                <h5 class="py-2"><img src="~/Content/auDeckTheme/assets/img/home-one/work/Moneybag_Icon.svg" alt="location" /><strong>When selling used cars to Wheelzy,</strong></h5>
+                <p>You can trust that you’re receiving the most money for your car in California and that your car will be going to good use. We buy cars in any condition, from damaged cars to vehicles with mechanical issues. Wheelzy’s goal is to take the time to fix up cars to get them back on the road, so that they can continue to help people get where they need to go. If the car is too damaged or is unrepairable, we will recycle the car responsibly or part it out.</p>
+                <h5 class="py-2"><img src="~/Content/auDeckTheme/assets/img/home-one/work/Questionmark_Icon.svg" alt="location" /><strong>When selling used cars to Wheelzy,</strong></h5>
+                <p>Check out our Selling Used Cars FAQ page filled with people’s most asked questions and more information on how to trade your car for cash with Wheelzy.</p>
+                <h1 class="mt-5 mb-3"><strong>We Buy Cars in <span>State</span></strong></h1>
+                <p>carBOXE is the most reliable car buyer in CA and we offer free junk car removal nationwide, including nearly every city in California. We pride ourselves on offering the absolute best customer service, by accommodating every situation in any way that we can. We know that selling used cars can be stressful, which is why we take care of all the work for you. With Wheelzy, there’s only a few steps to get rid of a car and we’re on standby to help with any questions you might have. It’s easy to find the nearest Wheelzy branch that buys cars near you:</p>
+
+
+                @*babar*@
+            <div class="row cities mt-3">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-lg-3 col-6 city-container">
+                        <a href="@Url.Action("WeBuyCar","Home", new { id =item.Id })" title="Cash For Cars in Alameda">@item.StateName</a>
+                    </div>
+
+                }
+
+
+            </div>
+
+            </div>
+            <div class="col-md-4 pt-5 pt-md-0">
+                <h3><strong>Junk Car Buyer in state</strong></h3>
+                <hr />
+                @*<div class="testimonial">
+                        <div class="bg-light rounded-3 p-5">
+                            <i class='bx bxs-quote-left'></i>
+                            <p class="mb-0">What a wonderful way to sell a car! Working with Kayla was super easy and I highly recommend anyone selling their car to check out Wheelzy.com.
+                            They gave us a great price and took care of all the paperwork and fees.</p>
+                            <div style="text-align:right;"><i class='bx bxs-quote-right'></i></div>
+                        </div>
+                        <div class="float-end mt-2">
+                            <h6><strong>Joe Sousa</strong> (Dos Palos, CA)</h6>
+                            <span><i class="bx bxs-check-circle"></i><span class="ps-1">Verified</span></span>
+                        </div>
+                    </div>*@
+                <h5 class="py-2">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/Junk_Car_Buyer_Icon.svg" alt="buyer" />
+                    <strong>Junk Car Buyer state</strong>
+                    <ul class="mt-3">
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-map me-2"></i>Altadena, CA</li>
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-phone me-2"></i>(866) 227-3852</li>
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-envelope me-2"></i>info@carBOXE.com</li>
+                    </ul>
+                </h5>
+
+                <h5 class="py-2">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/Business_Hours_Icon.svg" alt="buyer" />
+                    <strong>Business Hours</strong>
+                    <ul class="mt-3">
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-time me-2"></i>Instant Online Offers--- Always!</li>
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-time me-2"></i>Monday - Friday-------8am-9pm</li>
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-time me-2"></i>Saturday-------------9am-9pm</li>
+                        <li class="h6" style="list-style-type:none;"><i class="bx bxs-time me-2"></i>Sunday---------------9am-9pm</li>
+                    </ul>
+                </h5>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Offer AREA END -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4&callback=initAutocomplete&libraries=geometry,places&v=weekly"
+        defer>
+</script>
+

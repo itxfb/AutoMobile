@@ -1,0 +1,1215 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+
+}
+
+<!-- SLIDER AREA START (slider-4) -->
+<div class="ltn__slider-area ltn__slider-4 ">
+    <div class="ltn__slide-one-active----- slick-slide-arrow-1----- slick-slide-dots-1----- arrow-white----- ltn__slide-animation-active">
+        <!-- ltn__slide-item -->
+        <div class="ltn__slide-item ltn__slide-item-2 ltn__slide-item-4 text-color-white bg-image" data-bs-bg="../Content/NewAssets/img/slider/31-bg.png">
+            <div class="ltn__slide-item-inner text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 align-self-center">
+                            <div class="slide-item-info">
+                                <div class="slide-item-info-inner ltn__slide-animation">
+                                    <h6 class="slide-sub-title ltn__secondary-color animated text-uppercase">//  any kind of car you will get  //</h6>
+                                    <h1 class="slide-title animated ">Professional Car <br>  Service Provide</h1>
+                                    @*<div class="btn-wrapper animated">
+                                        <a href="service.html" class="theme-btn-1 btn btn-effect-1">OUR SERVICES</a>
+                                        <a href="about.html" class="btn btn-transparent btn-effect-2 white-color">LEARN MORE</a>
+                                    </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SLIDER AREA END -->
+<!-- CAR DEALER FORM AREA START -->
+<div class="ltn__car-dealer-form-area pt-115 pb-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 id="GetAnOffer" class="text-center"><u>Get Offer</u></h1>
+                <div class="ltn__car-dealer-form-tab">
+                    <div class="car-dealer-form-inner">
+                        <form action="@Url.Action("GenerateOfferPrice","Ajax")" method="post" class="ltn__car-dealer-form-box row">
+                            <div class="col-md-12">
+                                <label class="form-label h5">Enter VIN</label>
+                                <input type="text" onkeyup="searchByVin()" id="getVINnumber" class="form-control" placeholder="Enter your VIN" />
+                                <span class="text-success" id="vinTrue"></span>
+                                <span class="text-danger" id="vinFalse"></span>
+                                <img id="loaderForVin" src='~/Content/assets/images/loading.gif' width='40' style="margin-bottom: 2%; display: none" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-20">
+                                <label class="form-label h5">Select Year:</label>
+                                <select class="form-select " name="Year" id="getYear">
+                                    <option>Select Year</option>
+                                    @for (int i = 2024; i >= 1940; i--)
+                                    {
+                                        <option>@i</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-20">
+                                <label class="form-label h5">Select Make:</label>
+                                <select class="form-select " id="getMake" name="Make">
+                                    <option value="" selected>Select Make</option>
+                                    <option>ACURA</option>
+                                    <option>ALFA ROMEO</option>
+                                    <option>AMERICAN GENERAL</option>
+                                    <option>AMERICAN MOTORS</option>
+                                    <option>ASSEMBLY</option>
+                                    <option>ASTON MARTIN</option>
+                                    <option>AUDI</option>
+                                    <option>AUSTIN</option>
+                                    <option>AUTOBIANCHI</option>
+                                    <option>BENTLEY</option>
+                                    <option>BERTONE</option>
+                                    <option>BIG DOG</option>
+                                    <option>BLUEBIRD</option>
+                                    <option>BMW</option>
+                                    <option>BMW Motorrad</option>
+                                    <option>BRICKLAN</option>
+                                    <option>BUICK</option>
+                                    <option>CADILLAC</option>
+                                    <option>CHECKER</option>
+                                    <option>CHEVROLET</option>
+                                    <option>CHRYSLER</option>
+                                    <option>CLASSIC ROADSTER</option>
+                                    <option>COACH</option>
+                                    <option>CODA</option>
+                                    <option>CROSLEY</option>
+                                    <option>DAEWOO</option>
+                                    <option>DAIHATSU</option>
+                                    <option>DATSUN</option>
+                                    <option>DELOREAN</option>
+                                    <option>DESOTO</option>
+                                    <option>DODGE</option>
+                                    <option>DUCATI</option>
+                                    <option>EAGLE</option>
+                                    <option>ELDORADO</option>
+                                    <option>EXCALIBUR</option>
+                                    <option>FERRARI</option>
+                                    <option>FIAT</option>
+                                    <option>FISKER</option>
+                                    <option>FORD</option>
+                                    <option>FREIGHTLINER</option>
+                                    <option>GEM</option>
+                                    <option>GENESIS</option>
+                                    <option>GEO</option>
+                                    <option>GM</option>
+                                    <option>GMC</option>
+                                    <option>GOLF CART</option>
+                                    <option>HARLEY DAVIDSON</option>
+                                    <option>HONDA</option>
+                                    <option>HUMMER</option>
+                                    <option>HYUNDAI</option>
+                                    <option>INFINITI</option>
+                                    <option>INTERNATIONAL</option>
+                                    <option>ISUZU</option>
+                                    <option>JAGUAR</option>
+                                    <option>JEEP</option>
+                                    <option>KAWASAKI</option>
+                                    <option>KIA</option>
+                                    <option>LAFORZA</option>
+                                    <option>LAMBORGHINI</option>
+                                    <option>LANCIA</option>
+                                    <option>LAND ROVER</option>
+                                    <option>LEXUS</option>
+                                    <option>LINCOLN</option>
+                                    <option>LOTUS</option>
+                                    <option>MASERATI</option>
+                                    <option>MAYBACH</option>
+                                    <option>MAZDA</option>
+                                    <option>MCLAREN</option>
+                                    <option>MERCEDES BENZ</option>
+                                    <option>MERCURY</option>
+                                    <option>MERKUR</option>
+                                    <option>MG</option>
+                                    <option>MGB</option>
+                                    <option>MINI</option>
+                                    <option>MITSUBISHI</option>
+                                    <option>MOTO GUZZI</option>
+                                    <option>NASH</option>
+                                    <option>NISSAN</option>
+                                    <option>NISSAN DIESEL</option>
+                                    <option>NORTH AMERICAN BUS</option>
+                                    <option>OLDSMOBILE</option>
+                                    <option>OPEL</option>
+                                    <option>OSHKOSH</option>
+                                    <option>PEUGEOT</option>
+                                    <option>PIERCE</option>
+                                    <option>PLYMOUTH</option>
+                                    <option>PONTIAC</option>
+                                    <option>PORSCHE</option>
+                                    <option>RAM TRUCKS</option>
+                                    <option>RANGE ROVER</option>
+                                    <option>RENAULT</option>
+                                    <option>ROADMASTER RAIL</option>
+                                    <option>ROLLS ROYCE</option>
+                                    <option>ROVER</option>
+                                    <option>SAAB</option>
+                                    <option>SALEEN</option>
+                                    <option>SATURN</option>
+                                    <option>SCION</option>
+                                    <option>SMART CARS</option>
+                                    <option>SPRINTER</option>
+                                    <option>STERLING</option>
+                                    <option>STUDEBAKER</option>
+                                    <option>SUBARU</option>
+                                    <option>SUZUKI</option>
+                                    <option>TESLA</option>
+                                    <option>TOYOTA</option>
+                                    <option>TRIUMPH</option>
+                                    <option>VOLKSWAGEN</option>
+                                    <option>VOLVO</option>
+                                    <option>WHEEGO</option>
+                                    <option>WILLY</option>
+                                    <option>YAMAHA</option>
+                                    <option>YUGO</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-20">
+                                <label class="form-label h5">Select Model:</label>
+                                <select class="form-select " name="Model" id="getModel">
+                                    <option value="">Select Model</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <label class="form-label h5">Enter Zip Code</label>
+                                <input type="text" onchange="findLocation()" class="form-control" id="ZipCode" name="postalCode" placeholder="Enter Zip Code" />
+                                <img id="loadImg" src='~/Content/assets/images/loading.gif' width='40' style="margin-top: -2%; margin-left: -3%; display: none " />
+                                <span class="text-danger mb-3" id="location1"></span>
+                                <span class="text-success" id="location"></span>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <label class="form-label h5">Select Odometer Reading: <span class="text-danger">*</span></label>
+                                <select id="odometerReadings" name="odometerReadings" class="form-select" placeholder="Enter odometerReading" required>
+                                    <option value="" selected>Select Odometer Reading</option>
+                                    <option value="50000">Under 50,000</option>
+                                    <option value="100000">Under 100,000</option>
+                                    <option value="150000">Under 150,000</option>
+                                    <option value="200000">Under 200,000</option>
+                                    <option value="300000">Under 300,000</option>
+                                    <option value="350000">Unknown</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <h6 class="control-label">Select Wheel Type <span class="text-danger">*</span></h6>
+                                <select id="powerTrain" name="powerTrain" class="form-select" placeholder="Enter Power Train" required>
+                                    <option value="" selected>-- Select Wheel Type -- </option>
+                                    <option value="FWD">Front Wheel Drive</option>
+                                    <option value="RWD">Rear Wheel Drive</option>
+                                    <option value="AWD">All Wheel Drive</option>
+                                    <option value="4x4">4x4</option>
+                                    <option value="4x2">4x2</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 mb-20">
+                                <label class="control-label h5"> What kind of sale title type do you have? <span class="text-danger">*</span></label>
+                                <select name="Title" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="Clean Title">Clean Title (CT)</option>
+                                    <option value="Salvage Title">Salvage Title (ST) </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <label class="form-label h5">Does it moves forward and backward? <span class="text-danger">*</span></label>
+                                <select class="form-select" name="driveablestatus" required>
+                                    <option>Select an Option</option>
+                                    <option value="D">YES</option>
+                                    <option value="N">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6" id="does70" style="display:none;">
+                                <label class="form-label h5"> Does it drives upto 70 miles / hr? </label>
+                                <select name="odometerReading" class="form-select" placeholder="Select One">
+                                    <option value="50000">---- Select an Option ----</option>
+                                    <option value="50000">YES</option>
+                                    <option value="0">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6" id="doesStartdiv" style="display:none;">
+                                <label class="form-label h5"> Does it starts? </label>
+                                <select name="doesStart" class="form-select" placeholder="Select One">
+                                    <option value="Y">---- Select an Option ----</option>
+                                    <option value="Y">YES</option>
+                                    <option value="N">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6" id="TransRem" style="display:none">
+                                <label class="control-label h5"> Is Car Transmission Removed?</label>
+                                <select name="transRemove" class="form-select" placeholder="Select One">
+                                    <option value="MN">---- Select an Option ----</option>
+                                    <option value="ST">YES</option>
+                                    <option value="MN">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6" id="engTransRem" style="display:none">
+                                <label class="form-label h5">Is Car Engine Or Transmission Removed?</label>
+                                <select name="transRemove" class="form-select" placeholder="Select One">
+                                    <option value="MN">---- Select an Option ----</option>
+                                    <option value="ST">YES</option>
+                                    <option value="MN">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="car-price-filter-range col-lg-12">
+                                <div class="btn-wrapper text-center">
+                                    <button type="submit" class="btn theme-btn-1 btn-effect-1 text-uppercase">Get Offer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CAR DEALER FORM AREA END -->
+
+<!-- FEATURE AREA START ( Feature - 6) -->
+<div class="ltn__feature-area pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-area ltn__section-title-2 text-center">
+                    <h6 class="section-subtitle ltn__secondary-color">//  features  //</h6>
+                    <h1 class="section-title">Core Features<span>.</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="row ltn__custom-gutter">
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="ltn__feature-item ltn__feature-item-6">
+                    <div class="ltn__feature-icon">
+                        <span><i class="icon-car-parts"></i></span>
+                    </div>
+                    <div class="ltn__feature-info">
+                        <h3>All Kind Brand</h3>
+                        <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or incididunt ut labore.</p>
+                        @*<a class="ltn__service-btn" href="service-details.html">Read More</a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="ltn__feature-item ltn__feature-item-6 active">
+                    <div class="ltn__feature-icon">
+                        <span><i class="icon-mechanic"></i></span>
+                    </div>
+                    <div class="ltn__feature-info">
+                        <h3>Expert Mechanics</h3>
+                        <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or incididunt ut labore.</p>
+                        @*<a class="ltn__service-btn" href="service-details.html">Read More</a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="ltn__feature-item ltn__feature-item-6">
+                    <div class="ltn__feature-icon">
+                        <span><i class="icon-repair"></i></span>
+                    </div>
+                    <div class="ltn__feature-info">
+                        <h3>Repair Vehicales</h3>
+                        <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or incididunt ut labore.</p>
+                        @*<a class="ltn__service-btn" href="service-details.html">Read More</a>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-12">
+                <div class="ltn__feature-item ltn__feature-item-6">
+                    <div class="ltn__feature-icon">
+                        <span><i class="icon-car-parts-9"></i></span>
+                    </div>
+                    <div class="ltn__feature-info">
+                        <h3>Paint & Costume</h3>
+                        <p>Lorem ipsum dolor sit ame it, consectetur adipisicing elit, sed do eiusmod te mp or incididunt ut labore.</p>
+                        @*<a class="ltn__service-btn" href="service-details.html">Read More</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FEATURE AREA END -->
+
+<!-- CALL TO ACTION START (call-to-action-4) -->
+<div class="ltn__call-to-action-area ltn__call-to-action-4 bg-image pt-115 pb-120 mb-50" data-bs-bg="../Content/NewAssets/img/bg/6.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="call-to-action-inner call-to-action-inner-4 text-center">
+                    <div class="section-title-area ltn__section-title-2">
+                        <h1 class="section-title white-color">any question you have</h1>
+                    </div>
+                    <div class="btn-wrapper">
+                        <a href="@Url.Action("Contact","Home")" class="theme-btn-1 btn btn-effect-1">CONTACT US</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ltn__call-to-4-img-1">
+        <img src="~/Content/NewAssets/img/bg/12.png" alt="#">
+    </div>
+    <div class="ltn__call-to-4-img-2">
+        <img src="~/Content/NewAssets/img/bg/11.png" alt="#">
+    </div>
+</div>
+<!-- CALL TO ACTION END -->
+
+<!-- BANNER AREA START -->
+@*<div class="ltn__banner-area pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="ltn__banner-item">
+                    <div class="ltn__banner-img">
+                        <a href="shop.html"><img src="~/Content/NewAssets/img/banner/1.jpg" alt="Banner Image"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="ltn__banner-item">
+                    <div class="ltn__banner-img">
+                        <a href="shop.html"><img src="~/Content/NewAssets/img/banner/2.jpg" alt="Banner Image"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<!-- BANNER AREA END -->
+<!-- VIDEO AREA START -->
+<div class="ltn__video-popup-area ltn__video-popup-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ltn__video-bg-img ltn__video-popup-height-600 bg-overlay-black-10-- bg-image" data-bs-bg="../Content/NewAssets/img/bg/15.jpg">
+                    @*<a class="ltn__video-icon-2 ltn__video-icon-2-border" href="https://www.youtube.com/embed/X7R-q9rsrtU?autoplay=1&showinfo=0" data-rel="lightcase:myCollection">
+                        <i class="fa fa-play"></i>
+                    </a>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- VIDEO AREA END-->
+<!-- BRAND LOGO AREA START -->
+<div class="ltn__brand-logo-area ltn__brand-logo-1 bg-image bg-overlay-theme-black-90 pt-290 pb-110 plr--9" data-bs-bg="../Content/NewAssets/img/bg/7.jpg">
+    <div class="container-fluid">
+        <div class="row ltn__brand-logo-active">
+            <div class="col-lg-12">
+                <div class="ltn__brand-logo-item">
+                    <img src="~/Content/NewAssets/img/brand-logo/b1.png" alt="Brand Logo">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__brand-logo-item">
+                    <img src="~/Content/NewAssets/img/brand-logo/b2.png" alt="Brand Logo">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__brand-logo-item">
+                    <img src="~/Content/NewAssets/img/brand-logo/b3.png" alt="Brand Logo">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__brand-logo-item">
+                    <img src="~/Content/NewAssets/img/brand-logo/b4.png" alt="Brand Logo">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__brand-logo-item">
+                    <img src="~/Content/NewAssets/img/brand-logo/b5.png" alt="Brand Logo">
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__brand-logo-item">
+                    <img src="~/Content/NewAssets/img/brand-logo/b3.png" alt="Brand Logo">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BRAND LOGO AREA END -->
+<!-- TESTIMONIAL AREA START (testimonial-3) -->
+<!--<div class="ltn__testimonial-area bg-image pt-115 pb-70" data-bs-bg="../Content/NewAssets/img/bg/8.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-area ltn__section-title-2">
+                    <h6 class="section-subtitle ltn__secondary-color">//  Testimonials</h6>
+                    <h1 class="section-title">Clients Feedbacks<span>.</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="row ltn__testimonial-slider-2-active slick-arrow-3">
+            <div class="col-lg-12">
+                <div class="ltn__testimonial-item ltn__testimonial-item-3">
+                    <div class="ltn__testimonial-img">
+                        <img src="~/Content/NewAssets/img/blog/4.jpg" alt="#">
+                    </div>
+                    <div class="ltn__testimoni-info">
+                        <p>Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <div class="ltn__testimoni-info-inner">
+                            <div class="ltn__testimoni-img">
+                                <img src="~/Content/NewAssets/img/testimonial/1.jpg" alt="#">
+                            </div>
+                            <div class="ltn__testimoni-name-designation">
+                                <h4>Jacob William</h4>
+                                <h6>Founder, Browni Co.</h6>
+                            </div>
+                        </div>
+                        <div class="ltn__testimoni-bg-icon">
+                            <i class="far fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__testimonial-item ltn__testimonial-item-3">
+                    <div class="ltn__testimonial-img">
+                        <img src="~/Content/NewAssets/img/blog/5.jpg" alt="#">
+                    </div>
+                    <div class="ltn__testimoni-info">
+                        <p>Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <div class="ltn__testimoni-info-inner">
+                            <div class="ltn__testimoni-img">
+                                <img src="~/Content/NewAssets/img/testimonial/1.jpg" alt="#">
+                            </div>
+                            <div class="ltn__testimoni-name-designation">
+                                <h4>Ethan James</h4>
+                                <h6>Admin</h6>
+                            </div>
+                        </div>
+                        <div class="ltn__testimoni-bg-icon">
+                            <i class="far fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__testimonial-item ltn__testimonial-item-3">
+                    <div class="ltn__testimonial-img">
+                        <img src="~/Content/NewAssets/img/blog/6.jpg" alt="#">
+                    </div>
+                    <div class="ltn__testimoni-info">
+                        <p>Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <div class="ltn__testimoni-info-inner">
+                            <div class="ltn__testimoni-img">
+                                <img src="~/Content/NewAssets/img/testimonial/1.jpg" alt="#">
+                            </div>
+                            <div class="ltn__testimoni-name-designation">
+                                <h4>Jacob William</h4>
+                                <h6>Founder, Browni Co.</h6>
+                            </div>
+                        </div>
+                        <div class="ltn__testimoni-bg-icon">
+                            <i class="far fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__testimonial-item ltn__testimonial-item-3">
+                    <div class="ltn__testimonial-img">
+                        <img src="~/Content/NewAssets/img/blog/1.jpg" alt="#">
+                    </div>
+                    <div class="ltn__testimoni-info">
+                        <p>Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <div class="ltn__testimoni-info-inner">
+                            <div class="ltn__testimoni-img">
+                                <img src="~/Content/NewAssets/img/testimonial/1.jpg" alt="#">
+                            </div>
+                            <div class="ltn__testimoni-name-designation">
+                                <h4>Liam Mason</h4>
+                                <h6>Officer</h6>
+                            </div>
+                        </div>
+                        <div class="ltn__testimoni-bg-icon">
+                            <i class="far fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__testimonial-item ltn__testimonial-item-3">
+                    <div class="ltn__testimonial-img">
+                        <img src="~/Content/NewAssets/img/blog/2.jpg" alt="#">
+                    </div>
+                    <div class="ltn__testimoni-info">
+                        <p>Lorem ipsum ctetur elit, sed do eius mod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <div class="ltn__testimoni-info-inner">
+                            <div class="ltn__testimoni-img">
+                                <img src="~/Content/NewAssets/img/testimonial/1.jpg" alt="#">
+                            </div>
+                            <div class="ltn__testimoni-name-designation">
+                                <h4>Noah Alexander</h4>
+                                <h6>Professor</h6>
+                            </div>
+                        </div>
+                        <div class="ltn__testimoni-bg-icon">
+                            <i class="far fa-comments"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            <!--  -->
+        <!--</div>
+    </div>
+</div>-->
+<!-- TESTIMONIAL AREA END -->
+<!-- IMAGE SLIDER AREA START (img-slider-3) -->
+<div class="ltn__img-slider-area">
+    <div class="container-fluid">
+        <div class="row ltn__image-slider-4-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all mb--30">
+            <div class="col-lg-12">
+                <div class="ltn__img-slide-item-4">
+                    <a href="img/img-slide/21.jpg" data-rel="lightcase:myCollection">
+                        <img src="~/Content/NewAssets/img/img-slide/21.jpg" alt="Image">
+                    </a>
+                    @*<div class="ltn__img-slide-info">
+                        <div class="ltn__img-slide-info-brief">
+                            <h6>Sports Car</h6>
+                            <h1><a href="portfolio-details.html">BMW Pro Street Car</a></h1>
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="portfolio-details.html" class="btn theme-btn-1 btn-effect-1 text-uppercase">Details</a>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__img-slide-item-4">
+                    <a href="img/img-slide/22.jpg" data-rel="lightcase:myCollection">
+                        <img src="~/Content/NewAssets/img/img-slide/22.jpg" alt="Image">
+                    </a>
+                    @*<div class="ltn__img-slide-info">
+                        <div class="ltn__img-slide-info-brief">
+                            <h6>Sports Car</h6>
+                            <h1><a href="portfolio-details.html">BMW Pro Street Car</a></h1>
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="portfolio-details.html" class="btn theme-btn-1 btn-effect-1 text-uppercase">Details</a>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__img-slide-item-4">
+                    <a href="img/img-slide/23.jpg" data-rel="lightcase:myCollection">
+                        <img src="~/Content/NewAssets/img/img-slide/23.jpg" alt="Image">
+                    </a>
+                    @*<div class="ltn__img-slide-info">
+                        <div class="ltn__img-slide-info-brief">
+                            <h6>Sports Car</h6>
+                            <h1><a href="portfolio-details.html">BMW Pro Street Car</a></h1>
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="portfolio-details.html" class="btn theme-btn-1 btn-effect-1 text-uppercase">Details</a>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__img-slide-item-4">
+                    <a href="img/img-slide/24.jpg" data-rel="lightcase:myCollection">
+                        <img src="~/Content/NewAssets/img/img-slide/24.jpg" alt="Image">
+                    </a>
+                    @*<div class="ltn__img-slide-info">
+                        <div class="ltn__img-slide-info-brief">
+                            <h6>Sports Car</h6>
+                            <h1><a href="portfolio-details.html">BMW Pro Street Car</a></h1>
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="portfolio-details.html" class="btn theme-btn-1 btn-effect-1 text-uppercase">Details</a>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__img-slide-item-4">
+                    <a href="img/img-slide/22.jpg" data-rel="lightcase:myCollection">
+                        <img src="~/Content/NewAssets/img/img-slide/22.jpg" alt="Image">
+                    </a>
+                    @*<div class="ltn__img-slide-info">
+                        <div class="ltn__img-slide-info-brief">
+                            <h6>Sports Car</h6>
+                            <h1><a href="portfolio-details.html">BMW Pro Street Car</a></h1>
+                        </div>
+                        <div class="btn-wrapper">
+                            <a href="portfolio-details.html" class="btn theme-btn-1 btn-effect-1 text-uppercase">Details</a>
+                        </div>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- IMAGE SLIDER AREA END -->
+<!-- BLOG AREA START (blog-4) -->
+<!--<div class="ltn__blog-area pt-85 pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title-area ltn__section-title-2 text-center">
+                    <h6 class="section-subtitle ltn__secondary-color">// blog & insights</h6>
+                    <h1 class="section-title">News Feeds<span>.</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="row  ltn__blog-slider-one-active slick-arrow-1">
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-4 bg-image" data-bs-bg="../Content/NewAssets/img/blog/1.jpg">
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-envelope"></i> by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="far fa-envelope"></i> Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">The branch of biology that deals with the normal.</a></h3>
+                        <p>Lorem ipsum labore et dolore mag na aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-envelope"></i> June 24, 2020</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-4 bg-image" data-bs-bg="../Content/NewAssets/img/blog/2.jpg">
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-envelope"></i> by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="far fa-envelope"></i> Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">The branch of biology that deals with the normal.</a></h3>
+                        <p>Lorem ipsum labore et dolore mag na aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-envelope"></i> June 24, 2020</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-4 bg-image" data-bs-bg="../Content/NewAssets/img/blog/3.jpg">
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-envelope"></i> by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="far fa-envelope"></i> Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">The branch of biology that deals with the normal.</a></h3>
+                        <p>Lorem ipsum labore et dolore mag na aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-envelope"></i> June 24, 2020</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-4 bg-image" data-bs-bg="../Content/NewAssets/img/blog/4.jpg">
+                    <div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-envelope"></i> by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="far fa-envelope"></i> Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">The branch of biology that deals with the normal.</a></h3>
+                        <p>Lorem ipsum labore et dolore mag na aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-envelope"></i> June 24, 2020</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="ltn__blog-item ltn__blog-item-4">-->
+                    <!-- <div class="ltn__blog-img">
+                        <a href="blog-details.html"><img src="~/Content/NewAssets/img/blog/21.jpg" alt="#"></a>
+                    </div> -->
+                    <!--<div class="ltn__blog-brief">
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <li class="ltn__blog-author">
+                                    <a href="#"><i class="far fa-envelope"></i> by: Admin</a>
+                                </li>
+                                <li class="ltn__blog-tags">
+                                    <a href="#"><i class="far fa-envelope"></i> Services</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <h3 class="ltn__blog-title"><a href="blog-details.html">The branch of biology that deals with the normal.</a></h3>
+                        <p>Lorem ipsum labore et dolore mag na aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                        <div class="ltn__blog-meta-btn">
+                            <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-date"><i class="far fa-envelope"></i> June 24, 2020</li>
+                                </ul>
+                            </div>
+                            <div class="ltn__blog-btn">
+                                <a href="blog-details.html">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- BLOG AREA END -->
+
+@*<div class="contact-feature-area before-bg-bottom mb--30">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="ltn__contact-feature-item">
+                    <div class="ltn__contact-feature-icon">
+                        <img src="~/Content/NewAssets/img/icons/7.png" alt="Icon Image">
+                    </div>
+                    <div class="ltn__contact-feature-info">
+                        <a href="tel:+123456789">
+                            <span class="h6">+123-456-789</span><br>
+                            <span class="h2">Make A Call</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="ltn__contact-feature-item">
+                    <div class="ltn__contact-feature-icon">
+                        <img src="~/Content/NewAssets/img/icons/8.png" alt="Icon Image">
+                    </div>
+                    <div class="ltn__contact-feature-info">
+                        <a href="mailto:info@webmail.com">
+                            <span class="h6">info@webmail.com</span><br>
+                            <span class="h2">Support Mail</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="ltn__contact-feature-item">
+                    <div class="ltn__contact-feature-icon">
+                        <img src="~/Content/NewAssets/img/icons/9.png" alt="Icon Image">
+                    </div>
+                    <div class="ltn__contact-feature-info">
+                        <a href="locations.html">
+                            <span class="h6">12/A, New York, USA</span><br>
+                            <span class="h2">Office Address</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4&callback=initAutocomplete&libraries=geometry,places&v=weekly"
+        defer>
+</script>
+
+<script>
+    //        ======>    API     AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4     API      <======
+
+        //  1N4AL3AP4DC295509
+        //  4T1BK1EB6DU056165
+        //  KM8JM12D56U303366
+        //  5NMSH73E88H134350
+        //  1GTHK29U74E341306
+        //  JTLKT324X64085338
+        //  2HGEJ6446YH110899
+        //  JN8AS5MT2DW022816
+        //  3FADP4BJ2FM195587
+        //  1G6AF5SX6D0125409
+
+    //Get Value of Year
+    $("#getYear").change(function () {
+        var year = $(this).val();
+    });
+
+    $("#getMake").change(function () {
+        var make = $(this).val();
+        $("#MakeofCar").val(make);
+        $.ajax({
+            url: "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/" + make + "?format=json",
+            type: "GET",
+            dataType: "json",
+            success: function (result, status) {
+                $('#getModel').html($('<option>', {
+                    value: "",
+                    text: "---- Select a Model ----"
+                }));
+
+                $.each(result.Results, function (i, item) {
+                    $('#getModel').append($('<option>', {
+                        value: item.Model_Name,
+                        text: item.Model_Name
+                    }));
+                });
+            },
+            error: function () {
+            }
+        });
+    });
+
+    //Get Model of car
+    $("#getModel").change(function () {
+        var model = $(this).val();
+        $("#ModelofCar").val(model);
+    });
+
+    function searchByVin() {
+        $("#vinTrue").text('');
+        var val = $("#getVINnumber").val();
+
+        if (val != null && val != "") {
+            $("#loaderForVin").show();
+            $.ajax({
+                url: "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVINValuesBatch/",
+                type: "POST",
+                data: { format: "json", data: val },
+                dataType: "json",
+                success: function (result, status) {
+                    console.log("VIN Response", result.Results);
+                    if (result.Results[0].ErrorCode == "0") {
+                        $("#vinFalse").text('');
+                        $("#vinTrue").text(result.Results[0].ModelYear + ' ' + result.Results[0].Make + ' ' + result.Results[0].Model);
+                        $("#getYear").val(result.Results[0].ModelYear).change();
+                        $("#getMake").val(result.Results[0].Make).change();
+                        var getModel = result.Results[0].Model;
+
+                        $.ajax({
+                            url: "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/" + result.Results[0].Make + "?format=json",
+                            type: "GET",
+                            dataType: "json",
+                            success: function (result, status) {
+                                $('#getModel').html($('<option>', {
+                                    value: "",
+                                    text: "Select a Model"
+                                }));
+
+                                $.each(result.Results, function (i, item) {
+                                    $('#getModel').append($('<option>', {
+                                        value: item.Model_Name,
+                                        text: item.Model_Name
+                                    }));
+                                });
+                                $("#getModel").val(getModel);
+                            },
+                            error: function () {
+                            }
+                        });
+                        $("#YearofCar").val(result.Results[0].ModelYear);
+                        $("#MakeofCar").val(result.Results[0].Make);
+                        $("#ModelofCar").val(result.Results[0].Model);
+                        $("#loaderForVin").hide();
+                    } else {
+                        $("#vinTrue").text('');
+                        $("#vinFalse").text('Not Found');
+                        $("#loaderForVin").hide();
+                    }
+                },
+                error: function () {
+                    $("#vinTrue").text('');
+                    $("#vinFalse").text('Not Found');
+                    $("#loaderForVin").hide();
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    //       AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4
+    var api = 'https://maps.googleapis.com/maps/api/geocode/json';
+    var countrycodeapi = 'https://restcountries.com/v2/alpha/{code}';
+    var button = document.getElementById('ajax-button');
+    //button.addEventListener("click", findLocation());
+
+    function findLocation() {
+        /*debugger*/;
+        var ZipCode = document.getElementById('ZipCode').value;
+        var url = api + "?address=" + ZipCode + "&key=AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4";
+        var geocoder = new google.maps.Geocoder();
+        $("#loadImg").show();
+        geocoder.geocode({ 'address': ZipCode },
+            function (results, status) {
+                if (status == 'OK') {
+                    var x = results[0].formatted_address;
+                    //var x = results[0].postcode_localities;
+                    //  alert(x);
+                    //ViewBag.ZipCodeAddress = x;
+                    $('#location1').text("");
+                    $('#location').text(x);
+                    /*document.getElementById("location").style.color = "green";     .css('color' : 'green');   */
+                    $("#loadImg").hide();
+                } else {
+                    $('#location').text("");
+                    $('#location1').text("Not Found!");
+                    $("#loadImg").hide();
+                }
+            });
+    }
+
+    function showLoading() {
+        //$('#location').text("loading........");
+        var target = document.getElementById('location');
+        target.innerHTML = 'loading........';
+    }
+
+    function outputLocation(data) {
+        var targer = document.getElementById('location');
+        var json = JSON.parse(data);
+        var address = json.results[0].formatted_address;
+        targer.innerHTML = address;
+    }
+    //var button = document.getElementById('ajax-button');
+    //button.addEventListener("click", findLocation());
+</script>
+
+<script>
+    // checking country code validity
+    function Countrycodevalidate() {
+        /*debugger*/
+        var countryISO = $('#CountryCode').val();//1 complete
+        $.ajax({
+            type: 'POST',
+            url:  '@Url.Action("CheckCountryCode", "Ajax")', /*"../Ajax/GetUserById",*/
+            dataType: "json",
+            data: {
+                //   2
+                Countrycode: countryISO,
+            },
+            dataType: "json",
+            success: function (CC) {
+                if (CC != "") {
+                    $('#countrycodefalse').text('');
+                    $('#countrycodetrue').text(CC);
+                }
+                else
+                {
+                    $("#countrycodetrue").text('');
+                    $("#countrycodefalse").text("your code Does Not matched with USA ISO Code");
+                }
+            },
+            error: function () {
+                alert("sbc");
+            }
+        }); // Submit the form
+    }
+</script>
+
+<script>
+    $("[name='driveablestatus']").change(function () {
+        var val = $(this).val();
+        console.log("drivablestatus: ", val);
+        if (val == "D") {
+            console.log("div to show: ", $("#doesStartdiv"));
+            $("#doesStartdiv").css("display", "none");
+            $("#does70").css("display", "block");
+            $("#engTransRem").css("display", "none");
+            $("#TransRem").css("display", "none");
+        }
+        else {
+            $("#doesStartdiv").css("display", "block");
+            $("#does70").css("display", "none");
+        }
+        $("[name='odometerReading']").attr("checked", false);
+    });
+
+
+    $("[name='doesStart']").change(function () {
+        var val = $(this).val();
+
+        if (val == "Y") {
+            $("#engTransRem").css("display", "none");
+            $("#TransRem").css("display", "block");
+        }
+        else {
+            $("#engTransRem").css("display", "block");
+            $("#TransRem").css("display", "none");
+        }
+        $("[name='transRemove']").attr('checked', false);
+    });
+</script>
+
+<!-- Intro -->
+<!--<pre>
+</pre>
+<section id="intro-3">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-5">
+                <h4>Automobiles</h4>
+                <h2 style="font-weight:700">
+                    Best Fitting the Services<br />
+                    <span style="font-weight:900">Provided by the platform</span>
+                </h2>
+                <div class="row" style="margin-top:100px">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <a class="btn btn-block" href="@Url.Action("Offer","Home")">Get an Instant Offer</a>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+
+            </div>
+            <div class="col-md-7">
+                <div class="intro-img-wp">
+                    <img src="~/Content/NewAssets/~/Content/Frontassets/images/car-img-01.png" alt="image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->
+<!-- /Intro -->
+<!--How it Works-->
+<!--<section id="how-work" class="section-padding">
+    <div class="container mt-5">
+        <div class="heading-3 text-center" style="padding-bottom:20px;">
+            <h2>How it Work</h2>
+            <p>Helps you to find perfect car. But I must explain to you how all this mistaken</p>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <hr />
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 works-text">
+                        <h4>Enter Vehicle Details</h4>
+                        <p>By filling out our form with accurate information on CarBrain, we can give you an instant offer some  vehicles or contact you with a guaranteed offer shortly after you finish entering your car's details.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="">
+                            <img src="~/Content/Frontassets/images/HowitWorks/01Step.png" class="center" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="works-image">
+                            <img src="~/Content/Frontassets/images/HowitWorks/1a.png" class="img-style" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="works-image">
+                            <img src="~/Content/Frontassets/images/HowitWorks/1b.png" class="img-style" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="">
+                            <img src="~/Content/Frontassets/images/HowitWorks/02Step.png" class="center" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 works-text">
+                        <h4>Enter Vehicle Details</h4>
+                        <p>By filling out our form with accurate information on CarBrain, we can give you an instant offer some  vehicles or contact you with a guaranteed offer shortly after you finish entering your car's details.</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 works-text">
+                        <h4>Enter Vehicle Details</h4>
+                        <p>By filling out our form with accurate information on CarBrain, we can give you an instant offer some  vehicles or contact you with a guaranteed offer shortly after you finish entering your car's details.</p>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="">
+                            <img src="~/Content/Frontassets/images/HowitWorks/03Step.png" class="center" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="works-image">
+                            <img src="~/Content/Frontassets/images/HowitWorks/1c.png" class="img-style" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<pre>
+
+
+
+
+</pre>-->

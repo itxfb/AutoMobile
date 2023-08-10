@@ -1,0 +1,727 @@
+﻿@using CarSystem.Models
+
+@model List<State>
+
+
+@{
+    ViewBag.Title = "An Easy and Trusted Way to Sell Your Vehicle";
+    Layout = "~/Views/Shared/_auDeckLayout.cshtml";
+}
+
+<style>
+
+    .city-container {
+        border-top: 1px solid #EAEBF5;
+        border-bottom: -2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    div.cities {
+        border-top: 1px solid #EAEBF5;
+        border-bottom: 1px solid #EAEBF5;
+    }
+
+    .searchcity-area {
+        background-color: $white-color;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 65px;
+        
+    }
+
+    
+
+</style>
+
+<!-- Banner -->
+<div class="banner-area" style="height:695px!important">
+    <div class="banner-img">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/banner-tyre.png" alt="Banner">
+        <img class="wow fadeInRightBig banner-frontarea" src="~/Content/auDeckTheme/assets/img/home-one/banner-front.png" alt="Banner" style="top:107px !important;">
+    </div>
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="banner-text">
+                    <h1  style="font-style:normal;font-size:45px!important;">Get Instant Cash</h1>
+                    <p>
+                        carBOXE is the revolutionizing car selling with an easy, streamlined process where you get an offer online or over the phone. You get payment for your vehicle at the time of pick up. Selling cars has never been easier.
+                    </p>
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="@Url.Action("Offer","Home")">
+                            <i class='bx bx-meteor'></i>
+                            Get Instant Offer
+                        </a>
+                        <a class="banner-btn-right" href="tel:(866) 227-3852">
+                            <i class='bx bx-phone-call'></i>
+                            Call For An Offer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Banner -->
+<!-- Address -->
+<div class="address-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4">
+                <div class="address-item">
+                    <i class='bx bxs-paper-plane'></i>
+                    <h3>Location</h3>
+                    <span>6201 Bonhomme Rd Ste 476N Houston TX 77036</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="address-item">
+                    <i class='bx bxs-phone-call'></i>
+                    <h3>Call Us</h3>
+                    <span>
+                        <a href="tel:(866) 227-3852">(866)-227-3852</a>
+                    
+                        <a href="tel:(866) 227-3852">(866)-CAR-3852</a>
+                    </span>
+
+                </div>
+
+
+                <div class="subscribe-area ps-3 pe-3 mb-4" style="position: unset !important; -webkit-box-shadow: 0px !important; box-shadow:0px!important">
+
+                    <h2 class="mb-0">Find Out If carBOXE is Buying Vehicles in Your City</h2>
+                    @*<p>Over 200,000 Satisfied Customers</p>*@
+                    <span>
+                        <p class="text-success" style="margin-top:20px;" id="location12">
+
+                        </p>
+                        <b>
+                            <a href="@Url.Action("Offer","Home")" class="text-success" id="getInstantOfferUrlOfZipCode">
+
+                            </a>
+                        </b>
+                    </span>
+                    <p class="text-danger" id="location11"></p>
+                    <form class="newsletter-form pt-2" data-toggle="validator">
+                        <input type="text" style="width:100%" class="form-control" oninput="removeSpecialCharacters(this)" id="CityZipCode" placeholder="Enter your zipcode" name="cityy" required autocomplete="off" @*maxlength="5"*@>
+                        <input hidden id="Get_City" name="" />
+
+
+                        <button style="width:100%!important;top:auto!important;" class="btn subscribe-btn mt-1" onclick="findMyCity()" type="button">
+                            Search
+                        </button>
+                        @*<button style="width:100%!important;top:auto!important;" class="btn subscribe-btn mt-1" onclick="findMyCity()" type="submit">
+                Get Instant Offer
+            </button>*@
+                        @*<span class="text-danger mb-1" id="location11">not found</span>
+            <span class="text-success" id="location12">found</span>
+            <div id="validator-newsletter" class="form-result"></div>*@
+                    </form>
+
+                </div>
+                </div>
+                <div class="col-sm-6 offset-sm-3 offset-lg-0 col-lg-4">
+                    <div class="address-item address-one">
+                        <i class='bx bxs-time-five'></i>
+                        <h3>Schedule</h3>
+                        <span>Monday to Sunday</span>
+                        @*<span>10:00 AM to 6.00 PM</span>*@
+                        <span>24/7</span>
+                    </div>
+                </div>
+
+            </div>
+
+       
+
+    </div>
+</div>
+<!-- End Address -->
+<!-- Process -->
+<section class="process-area pt-100 pb-70">
+    <div class="process-shape">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/car-shadow.png" alt="Shape">
+    </div>
+    <div class="section-title">
+        <span class="sub-title">process</span>
+        <h2>
+            What does carBOXE offer?
+        </h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="process-item">
+                    <div class="process-inner process-one">
+                        <i class='bx bx-car'></i>
+                        <h3>
+                            We Make Offers
+                        </h3>
+                        <p>We offer a clear and transparent process to all our customers to sell their cars/vehicles.</p>
+                    </div>
+                    <div class="process-inner">
+                        <i class='bx bxs-car-garage'></i>
+                        <h3>Sell your car</h3>
+                        <p>Sell your car instantly and safely within minutes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="process-item">
+                    <div class="process-img">
+                        <img src="~/Content/auDeckTheme/assets/img/home-one/tyre.png" alt="Process">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="process-item">
+                    <div class="process-inner process-two">
+                        <i class='bx bx-dollar'></i>
+                        <h3>Pay you instantly</h3>
+                        <p>Whether you sell your car, we can assure market-conform and Fair Prices Guaranteed with any offer</p>
+                    </div>
+                    <div class="process-inner process-three">
+                        <i class='bx bxs-car-wash'></i>
+                        <h3>Go Green</h3>
+                        <p>Recycle Vehicles are Environmentally Disposed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Process -->
+<!-- Service -->
+<section class="pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Offer</span>
+            <h2>
+                An Easy and Trusted Way to Sell Your Transportation
+            </h2>
+            <p>Get the best offer instantly.</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-4">           
+                    <div class="service-item">
+                        <div class="service-img">
+                            <img src="~/Content/auDeckTheme/assets/img/home-one/service/1.jpg" alt="Service">
+                        </div>
+                        <div class="service-content">
+                            <i class='bx bx-time'></i>
+                            <i class='bx bx-car service-icon'></i>
+                            <h3>
+                                Get an Offer in Minutes
+                            </h3>
+                            <p>
+                                We can buy your car in minutes.
+                                Quick car evaluation without the hassle
+                            </p>
+                        </div>
+                    </div>      
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-img">
+                            <img src="~/Content/auDeckTheme/assets/img/home-one/service/2.jpg" alt="Service">
+                        </div>
+                        <div class="service-content">
+                            <i class='bx bxs-car-garage'></i>
+                            <i class='bx bxs-car-garage service-icon'></i>
+                            <h3>
+                                We Come to You
+                            </h3>
+                            <p>
+                                You don't have to pay for towing.
+                                We take care of all towing fees.
+                            </p>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                    <div class="service-item">
+                        <div class="service-img">
+                            <img src="~/Content/auDeckTheme/assets/img/home-one/service/3.jpg" alt="Service">
+                        </div>
+                        <div class="service-content">
+                            <i class='bx bx-dollar'></i>
+                            <i class='bx bx-dollar service-icon'></i>
+                            <h3>
+                                Get Paid Today
+                            </h3>
+                            <p>
+                                Immediate payment and Cash/Check in hand.
+                                Your offer is always guaranteed.
+                            </p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End Service -->
+<!-- Quality -->
+<section class="quality-area">
+    <div class="quality-img">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/quality-shape.png" alt="Quality">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/quality-shape.png" alt="Quality">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/banner-front1.png" alt="Quality">
+    </div>
+    <div class="container">
+        <div class="quality-content">
+            <div class="section-title">
+                <h2>
+                    Why Is carBOXE a Better Car Buyer?
+                </h2>
+                <p><b>Top Cash Offers:</b> Maximize your sale price and join our 2M+ customers. Get an offer online to sell your car within minutes.</p>
+                <p><b>Avoid The Dealership:</b> Sell your car without the hassle of a dealership. You don't need to worry about a dealer negotiating your car price or unfairly raising the trade-in value because we only buy cars.</p>
+                <p><b>No Stacks of Paperwork:</b> You don't have to fill out pages upon pages of paperwork or go wait at the DMV to get the ownership of the car transferred out of your name. Our paperwork services are completely free when you sell your car to us.</p>
+                <p><b>We Buy Cars Nationwide:</b> "Who buys cars near me?" It's a common question with an easy answer. We buy cars for cash nationwide, from the East coast to the west.</p>
+                <p><b>Cash For Cars:</b> Selling used cars with carBOXE is easy because we can pay cash for cars quickly. Get cash for cars with just one simple phone call.</p>
+            </div>
+            <div class="cmn-btn">
+                <a class="banner-btn-left" href="@Url.Action("Offer","Home")">
+                    Get Instant Offer 
+                </a>
+            </div>
+            <img src="~/Content/auDeckTheme/assets/img/home-one/tyre.png" alt="Quality">
+        </div>
+    </div>
+</section>
+<!-- End Quality -->
+<!-- Work -->
+<!--<section class="work-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">works</span>
+            <h2>Latest Works For Clients</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="sorting-menu">
+            <ul>
+                <li class="filter active" data-filter="all">all</li>
+                <li class="filter" data-filter=".tyre">wheels</li>
+                <li class="filter" data-filter=".web">steering</li>
+                <li class="filter" data-filter=".ui">brakes</li>
+                <li class="filter" data-filter=".ux">suspention</li>
+                <li class="filter" data-filter=".branding">tyre</li>
+            </ul>
+        </div>
+        <div id="Container" class="row">
+            <div class="col-sm-6 col-lg-3 mix web ui">
+                <div class="work-item">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/1.jpg" alt="Work">
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="#">
+                            Read More
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mix tyre ux">
+                <div class="work-item">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/2.jpg" alt="Work">
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="#">
+                            Read More
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 mix ui branding">
+                <div class="work-item">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/3.jpg" alt="Work">
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="#">
+                            Read More
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mix ux tyre">
+                <div class="work-item">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/4.jpg" alt="Work">
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="#">
+                            Read More
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 mix branding ui">
+                <div class="work-item">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/5.jpg" alt="Work">
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="#">
+                            Read More
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3 mix tyre web">
+                <div class="work-item">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/work/6.jpg" alt="Work">
+                    <div class="cmn-btn">
+                        <a class="banner-btn-left" href="#">
+                            Read More
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>-->
+<!-- End Work -->
+<!-- Feature -->
+<div class="feature-area">
+    <div class="feature-shape">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/feature-shape.png" alt="Feature">
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="feature-img">
+                    <img src="~/Content/auDeckTheme/assets/img/home-one/feature-bg.jpg" alt="Feature">
+                </div>
+            </div>
+            <div class="col-lg-6 p-0">
+                <div class="feature-content">
+                    <h2>Our Features</h2>
+                    <ul>
+                        <li>
+                            <i class='bx bx-box'></i>
+                            <h3>Trusted & Quality Work</h3>
+                            <p>we understand that selling a car is a big decision.That's why we're committed to providing our customers with trusted and quality work that they can rely on. </p>
+                        </li>
+                        <li>
+                            <i class='bx bxs-truck'></i>
+                            <h3>Fast Service Delivery</h3>
+                            <p>we understand that time is a precious commodity, which is why we're committed to providing fast and efficient service delivery to all of our customers. </p>
+                        </li>
+                        <li>
+                            <i class='bx bx-money'></i>
+                            <h3>Money Back Guarantee</h3>
+                            <p>we offer a money-back guarantee on all of the vehicles we buy. If for any reason you're not satisfied with our price,Let us know within 24 hours. We will return your money and you will have to pick up your vehicle.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Feature -->
+<!-- Engineer -->
+<section class="engineer-area ptb-100">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Cars List</span>
+            <h2>
+                Sell Your Car Like These Customers!
+            </h2>
+        </div>
+        <div class="engineer-slider owl-theme owl-carousel">
+            <div class="engineer-item">
+                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/1.jpg" alt="Engineer">
+                <div class="engineer-bottom">
+                    <h3>2010 Ford Edge.</h3>
+                    <span><h6>Price: <b>$1,200</b></h6></span>
+                </div>
+            </div>
+            <div class="engineer-item">
+                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/2.jpg" alt="Engineer">
+                <div class="engineer-bottom">
+                    <h3>2001 Mercedes-Benz C</h3>
+                    <span><h6>Price: <b>$222</b></h6></span>
+                </div>
+            </div>
+            <div class="engineer-item">
+                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/3.jpg" alt="Engineer">
+                <div class="engineer-bottom">
+                    <h3>2006 Hyundai Tucson</h3>
+                    <span><h6>Price: <b>$400</b></h6></span>
+                </div>
+            </div>
+            <div class="engineer-item">
+                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/4.jpg" alt="Engineer">
+                <div class="engineer-bottom">
+                    <h3>2000 Dodge Grand Caravan</h3>
+                    <span><h6>Price: <b>$300</b></h6></span>
+                </div>
+            </div>
+            <div class="engineer-item">
+                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/5.jpg" alt="Engineer">
+                <div class="engineer-bottom">
+                    <h3>2003 Mercury Sable Sedan</h3>
+                    <span><h6>Price: <b>$225</b></h6></span>
+                </div>
+            </div>
+            <div class="engineer-item">
+                <img src="~/Content/auDeckTheme/assets/img/home-one/engineer/6.jpg" alt="Engineer">
+                <div class="engineer-bottom">
+                    <h3>BMW 745li</h3>
+                    <span><h6>Price: <b>$435</b></h6></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Engineer -->
+<!-- Review -->
+<div class="review-area" id="testimonialSection">
+    <div class="review-shape">
+        <img src="~/Content/auDeckTheme/assets/img/home-one/review/review-shape.png" alt="Review">
+    </div>
+    @*<div class="video-wrap">
+            <a href="https://www.youtube.com/watch?v=aqz-KE-bpKQ" class="popup-youtube">
+                <i class='bx bx-play'></i>
+            </a>
+        </div>*@
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-lg-6 ptb-100">
+                <div class="review-slider owl-theme owl-carousel">
+                    <div class="review-item">
+                        <i class='bx bxs-quote-right'></i>
+                        <p>I recently sold my car with the help of this amazing platform, and I couldn't be happier with the outcome.Was skeptical initially because I wasn't sure what to expect. I am use to selling directly to the junk yards instead. The process was incredibly easy and efficient, and Rosalinda at the service desk was really helpful. I will highly recommend their service.</p>
+                        <div class="review-inner">
+                            <img hidden src="~/Content/auDeckTheme/assets/img/home-one/review/reviewer-one.png" alt="Review">
+                            <h3>Stephanie Martello</h3>
+                            <span>Valencia, CA</span>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <i class='bx bxs-quote-right'></i>
+                        <p>Thanks guys for accepting to offer me what I wanted for the flooded 2010 Infiniti Q50. I wanted to take a moment to sincerely thank you for your excellent service over the phone. As someone who doesn't know much about computers, I was worried about the process, but you made it easy and stress-free. Thank you and will definitely refer you to family and friends.</p>
+                        <div class="review-inner">
+                            <img hidden src="~/Content/auDeckTheme/assets/img/home-one/review/reviewer-one.png" alt="Review">
+                            <h3>Steve Neeleman</h3>
+                            <span>Doral, FL</span>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <i class='bx bxs-quote-right'></i>
+                        <p>I received what I wanted for my vehicle. Friendly staff and easy process online. Quick turn around, check in hand the next day and my vehicle towed away.</p>
+                        <div class="review-inner">
+                            <img hidden src="~/Content/auDeckTheme/assets/img/home-one/review/reviewer-one.png" alt="Review">
+                            <h3>Christina Dumford</h3>
+                            <span>Peoria, IL</span>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <i class='bx bxs-quote-right'></i>
+                        <p>Amazing customer service, I was surprised they answered their hotline on sunday when everyone else I contacted didn't. Did not feel pressured or obligated.Very straightforward process and quick turnaround time for my check and vehicle picked up. I am curious about your nft receipt and will follow-up on this.</p>
+                        <div class="review-inner">
+                            <img hidden src="~/Content/auDeckTheme/assets/img/home-one/review/reviewer-one.png" alt="Review">
+                            <h3>Ernesto Victoriano</h3>
+                            <span>El Paso, TX</span>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <i class='bx bxs-quote-right'></i>
+                        <p>I really don't have much to say. Prices were fair, I got what I wanted going in for my stripped vehicle with a salvage title.</p>
+                        <div class="review-inner">
+                            <img hidden src="~/Content/auDeckTheme/assets/img/home-one/review/reviewer-one.png" alt="Review">
+                            <h3>Ahmed Tigani</h3>
+                            <span>Sioux Falls, SD</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="review-bg">
+                    <img hidden src="~/Content/auDeckTheme/assets/img/home-one/review/review-right.jpg" alt="Review">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Review -->
+<!-- Pricing -->
+<section class="pricing-area pt-100 pb-100">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">offer</span>
+            <h2>Either Call carBOXE or Use carBOXE Online Offer Page To Sell Your Car</h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-lg-6">
+                <div class="pricing-item">
+                    <div class="pricing-top">
+                        <h3>
+                            Cash For Cars Today
+                        </h3>
+                        @*<p><span class="dollar">$</span>39<span class="month">/month</span></p>*@
+                    </div>
+                    <div class="pricing-middle">
+                        <i class='bx bx-dollar'></i>
+                    </div>
+                    <div class="pricing-bottom">
+                        <ul>
+                            <li>
+                                <i class='bx bx-check-circle'></i>
+                                <b>Instant offer</b> to sell your car fast. Get an accurate offer in just minutes.
+                            </li>
+                            <li>
+                                <i class='bx bx-check-circle'></i>
+                                <b>Guaranteed offer</b> so the amount you receive will not decrease.
+                            </li>
+                            <li>
+                                <i class='bx bx-check-circle'></i>
+                                <b>Cash for cars</b> is paid on the spot when we arrive to pick up.
+                            </li>
+                        </ul>
+                        <div class="cmn-btn">
+                            <a class="banner-btn-left" href="@Url.Action("Offer","Home")">
+                                Get an Instant Offer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6">
+                <div class="pricing-item">
+                    <div class="pricing-top">
+                        <h3>
+                            Sell Your Car Online
+                        </h3>
+                        @*<p><span class="dollar">$</span>69<span class="month">/month</span></p>*@
+                    </div>
+                    <div class="pricing-middle">
+                        <i class='bx bx-rocket'></i>
+                    </div>
+                    <div class="pricing-bottom">
+                        <ul>
+                            <li>
+                                <i class='bx bx-check-circle'></i>
+                                <b>Bids go to your phone</b> so that selling used cars is a breeze.
+                            </li>
+                            <li>
+                                <i class='bx bx-check-circle'></i>
+                                <b>Sell your car online</b> for free. carBOXE never charges any fees.
+                            </li>
+                            <li>
+                                <i class='bx bx-check-circle'></i>
+                                <b>Get cash for cars</b> nationwide. We make it easy to sell your car anywhere.
+                            </li>
+                        </ul>
+                        <div class="cmn-btn">
+                            <a class="banner-btn-left" href="@Url.Action("Offer","Home")">
+                                Get an Instant Offer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        @*states code*@
+
+    <div class="row cities mt-3 mb-5">
+
+
+
+        <h3 class="mb-4"><strong>Recent Searches</strong></h3>
+
+        @*recents*@
+        
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Who Buys Cars</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Junking Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Car For Cash</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell My Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">What Is My Car Worth</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Cars</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">We Buy Cars</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Junk My Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell My Car Fast</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Buy My Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Your Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">How To Sell a Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Where Can I Sell My Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Damaged Car</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell My Car For Cash</a>
+        </div>
+        <div class="col-md-3 col-lg-3 col-6 city-container">
+            <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Cash For Cars</a>
+        </div>
+
+
+        @*recents*@
+
+
+        <h3 class="mb-4 mt-5"><strong>We Buy Cars Nationwide</strong></h3>
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-lg-3 col-6 city-container">
+                @* <a href="@Url.Action("WeBuyCar","Home", new { id =item.Id })" title="Cash For Cars with carBOXE">@item.StateName</a>*@
+                <a href="/WeBuyCar/@item.StateName.Trim()" title="Cash For Cars with carBOXE">@item.StateName</a>
+            </div>
+
+        }
+    </div>
+
+
+
+        @*states code*@
+
+
+
+
+    </div>
+</section>
+
+
+<!-- End Pricing -->
+<script>
+    function removeSpecialCharacters(val) {
+        debugger;
+
+        const inputField = val;
+
+        inputField.addEventListener('input', () => {
+            // Remove all non-alphanumeric characters except specified special characters
+            inputField.value = inputField.value.replace(/[^a-zA-Z0-9]/g, '');
+        });
+    }
+
+</script>

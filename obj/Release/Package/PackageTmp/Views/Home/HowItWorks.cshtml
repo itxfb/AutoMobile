@@ -1,0 +1,378 @@
+﻿@using CarSystem.Models
+
+@model List<State>
+
+@{
+    ViewBag.Title = "How it works";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_auDeckLayout.cshtml";
+}
+
+
+<style>
+    /*form styles*/
+    #msform {
+        /*text-align: center;*/
+        position: relative;
+        margin-top: 30px;
+    }
+
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 8px;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+            padding: 20px 30px;
+            box-sizing: border-box;
+            width: 80%;
+            margin: 0 10%;
+            /*stacking fieldsets above each other*/
+            position: relative;
+        }
+
+            /*Hide all except first fieldset*/
+            #msform fieldset:not(:first-of-type) {
+                display: none;
+            }
+
+        /*inputs*/
+        #msform input, #msform textarea {
+            /*padding: 15px;*/
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 13px;
+        }
+
+            #msform input:focus, #msform textarea:focus {
+                -moz-box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: 1px solid #2098ce;
+                outline-width: 0;
+                transition: All 0.5s ease-in;
+                -webkit-transition: All 0.5s ease-in;
+                -moz-transition: All 0.5s ease-in;
+                -o-transition: All 0.5s ease-in;
+            }
+
+        /*buttons*/
+        #msform .action-button {
+            width: 100px;
+            background: #2098ce;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button:hover, #msform .action-button:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #2098ce;
+            }
+
+        #msform .action-button-previous {
+            width: 100px;
+            background: #aCbEd0;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #aCbEd0;
+            }
+
+    /*headings*/
+    .fs-title {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #2C3E50;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
+
+    .fs-subtitle {
+        font-weight: normal;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /*progressbar*/
+    #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        /*CSS counters to number the steps*/
+        counter-reset: step;
+    }
+
+        #progressbar li {
+            list-style-type: none;
+            color: #666;
+            text-transform: uppercase;
+            font-size: 9px;
+            width: 33.33%;
+            float: left;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+            #progressbar li:before {
+                content: counter(step);
+                counter-increment: step;
+                width: 24px;
+                height: 24px;
+                line-height: 26px;
+                display: block;
+                font-size: 12px;
+                color: #333;
+                background: white;
+                border-radius: 25px;
+                margin: 0 auto 10px auto;
+            }
+
+            /*progressbar connectors*/
+            #progressbar li:after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: white;
+                position: absolute;
+                left: -50%;
+                top: 9px;
+                z-index: -1; /*put it behind the numbers*/
+            }
+
+            #progressbar li:first-child:after {
+                /*connector not needed before the first step*/
+                content: none;
+            }
+
+            /*marking active/completed steps blue*/
+            /*The number of the step and the connector before it = blue*/
+            #progressbar li.active:before, #progressbar li.active:after {
+                background: #2098ce;
+                color: white;
+            }
+
+    input[type="submit"] {
+        height: auto
+    }
+
+    .city-container {
+        border-top: 1px solid #eaebf5;
+        border-bottom: -2px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    div.cities {
+        border-top: 1px solid #eaebf5;
+        border-bottom: 1px solid #eaebf5;
+    }
+
+    video {
+        border: none !important;
+    }
+
+
+    .bg-image {
+        background-image: url('/Content/auDeckTheme/assets/img/home-one/hero_1x.jpg');
+        height: 500px;
+        min-height: fit-content;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .workbg-image {
+        background-image: url('/Content/auDeckTheme/assets/img/home-one/work/workbg6.jpg');
+        height: 500px;
+        min-height: fit-content;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        padding-bottom:81px!important;
+    }
+    .newimage-container {
+        width: 100%;
+        /*height: 300px;*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .overlay-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+        .overlay-text h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .overlay-text p {
+            font-size: 1rem;
+        }
+
+    .border-right-blue-300 {
+        border-right: 7px solid #FDB819;
+    }
+</style>
+
+
+<div class="container-fluid bg-image">
+    <div class="row h-100">
+        <div class="col-12 my-auto">
+            <div class="text-center">
+                <h1 class="text-white"><strong>There’s a lot to love about carBOXE</strong></h1>
+                <p>Do the right things, put people first, win together, go for greatness</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog-area pt-5 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center" hidden>
+                    <h1><strong>How we work</strong></h1>
+                    <p class="pb-3">Easy Steps to Sell Your Car For Cash Anywhere</p>
+                    <hr style="background-color:#FDB819 !important; height: 8px; width: 50%; margin: 0 auto;" "      />
+                  
+                    <video hidden class="w-50 mt-4" autoplay="" loop="" muted="" style="border-radius: 20px !important; border: 1px solid #FDB819 !important; ">
+                        <source src="/Content/auDeckTheme/assets/img/home-one/work/carBOXEad.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="row mt-2 workbg-image">
+
+                    <div class="text-center">
+                        @*<h1 style="color:white" ><strong>How we work</strong></h1>*@
+                        <p  style="color:white;padding-top:20px">Easy Steps to Sell Your Car For Cash Anywhere</p>
+                        @*<hr style="background-color:#FDB819 !important; height: 8px; width: 50%; margin: 0 auto;" "       />*@
+
+                        
+                    </div>
+
+                    <div class="col-md-4"><img class="newimage-container" src="~/Content/auDeckTheme/assets/img/home-one/work/auto1.png" alt="A beautiful sunset"></div>
+                    <div class="col-md-4"><img class="newimage-container" src="~/Content/auDeckTheme/assets/img/home-one/work/auto2.png" alt="A beautiful sunset"></div>
+                    <div class="col-md-4"><img class="newimage-container" src="~/Content/auDeckTheme/assets/img/home-one/auto3.png" alt="A beautiful sunset"></div>
+                </div>
+
+                <h1 class="mt-5 pb-3"><strong>How to Sell Your Car Online Fast</strong></h1>
+
+                <div class="row">
+                    <div class="col-md-4 pt-md-0 pt-5 col-lg-4 col-12 border-right-blue-300">
+                        <h3>carBOXE is the fastest way to sell your car anywhere.</h3>
+                        <div class="cmn-btn w-100"><a href="@Url.Action("Offer","Home")" class="mt-3 banner-btn-left"><i class="bx bxs-purchase-tag rounded"></i> Get Instant Offer</a></div>
+                    </div>
+                    <div class="col-md-8 col-lg-8 col-12  pt-md-0 pt-lg-0 pt-4">
+                        <p><b>Sell Your Car Online:</b> Selling cars for cash from the comfort of your own home is not too good to be true. carBOXE will make you a guaranteed offer online or on the phone to sell your car fast.</p>
+                        <p><b>Free Car Removal Anywhere: </b> If you accept our offer, we’ll arrange a pick up time that works best for your schedule. Free towing is included when we buy cars. No matter where the car is located.</p>
+                        <p><b>Get Cash For Cars: </b>When our friendly car buyers arrive to pick up your car, you’ll receive cash for your car on the spot. We also take care of transferring the car out of your name for free.</p>
+                    </div>
+                </div>
+
+                @*states code*@
+
+            <div class="row cities mt-4 mb-5">
+
+                <h3 class="mb-4"><strong>Recent Searches</strong></h3>
+
+                @*recents*@
+
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Who Buys Cars</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Junking Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Car For Cash</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell My Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">What Is My Car Worth</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Cars</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">We Buy Cars</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Junk My Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell My Car Fast</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Buy My Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Your Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">How To Sell a Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Where Can I Sell My Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell Damaged Car</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Sell My Car For Cash</a>
+                </div>
+                <div class="col-md-3 col-lg-3 col-6 city-container">
+                    <a href="@Url.Action("Offer","Home")" title="Cash For Cars with carBOXE">Cash For Cars</a>
+                </div>
+
+
+                @*recents*@
+
+                <h3 class="mb-4 mt-5"><strong>We Buy Cars Nationwide</strong></h3>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 col-lg-3 col-6 city-container">
+                        @* <a href="@Url.Action("WeBuyCar","Home", new { id =item.Id })" title="Cash For Cars in Alameda">@item.StateName</a>*@
+                        <a href="/WeBuyCar/@item.StateName.Trim()" title="Cash For Cars in Alameda">@item.StateName</a>
+                    </div>
+
+                }
+            </div>
+
+
+
+                @*states code*@
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Offer AREA END -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4&callback=initAutocomplete&libraries=geometry,places&v=weekly"
+        defer>
+</script>

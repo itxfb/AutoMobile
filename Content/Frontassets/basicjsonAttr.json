@@ -1,0 +1,51 @@
+{
+  "transactionId": "15397310-0A0A-02AB-07F6-BA0F90581893",
+  "version": "1.0",
+  "adminInfo": {
+    "sellerCompanyCode": "RLK2",
+    "vendorCode": "",
+    "officeCode": "RLK2"
+  },
+  "vehicleLocationSite": {
+    "locationName": "",
+
+    "address": {
+      "contact": {
+        "postalCode": "_postalCode_"
+      }
+    }
+  },
+  "claimNumber": "",
+  "lossInfo": {
+    "lossType": "_lossType_",
+    "primaryPointOfImpact": "_primaryPointOfImpact_",
+    "secondaryPointOfImpact": "_secondaryPointOfImpact_",
+    "damageSeverity": "_damageSeverity_",
+    "airbagsDeplyed": "_airbagsDeployed_"
+  },
+
+  "vehicleInformation": {
+    "vin": "_vin_",
+    "year": "_year_",
+    "makeCode": "_makeCode_",
+    "makeDescription": "_makeDescription_",
+    "model": "_model_",
+    "vehicleType": "_vehicleType_",
+    "odometerInfo": {
+      "odometerReading": "_odometerReading_",
+      "odometerBrand": "_odometerBrand_"
+    },
+    "hasKeys": "_hasKeys_",
+    "powerTrain": "_powerTrain_"
+  },
+  "valuation": {
+    "repairEstimateIncomplete": true
+  },
+  "vehicleCondition": {
+    "drivable": "_drivable_",
+    "drivabilityRating": "_drivabilityRating_",
+    "titleCategory": "_titleCategory_"
+  }
+}
+
+

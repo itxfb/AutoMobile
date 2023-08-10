@@ -1,0 +1,1222 @@
+﻿@{
+    ViewBag.Title = "Get Offer";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_auDeckLayout.cshtml";
+}
+
+
+<style>
+    /*form styles*/
+    #msform {
+        /*text-align: center;*/
+        position: relative;
+        margin-top: 30px;
+    }
+
+        #msform fieldset {
+            background: white;
+            border: 0 none;
+            border-radius: 8px;
+            box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+            padding: 20px 18px;
+            box-sizing: border-box;
+            width: 80%;
+            margin: 0 10%;
+            /*stacking fieldsets above each other*/
+            position: relative;
+        }
+
+            /*Hide all except first fieldset*/
+            #msform fieldset:not(:first-of-type) {
+                display: none;
+            }
+
+        /*inputs*/
+        #msform input, #msform textarea {
+            /*padding: 15px;*/
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: montserrat;
+            color: #2C3E50;
+            font-size: 13px;
+        }
+
+            #msform input:focus, #msform textarea:focus {
+                -moz-box-shadow: none !important;
+                -webkit-box-shadow: none !important;
+                box-shadow: none !important;
+                border: 1px solid #2098ce;
+                outline-width: 0;
+                transition: All 0.5s ease-in;
+                -webkit-transition: All 0.5s ease-in;
+                -moz-transition: All 0.5s ease-in;
+                -o-transition: All 0.5s ease-in;
+            }
+
+        /*buttons*/
+        #msform .action-button {
+            width: 100px;
+            background: #2098ce;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button:hover, #msform .action-button:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #2098ce;
+            }
+
+        #msform .action-button-previous {
+            width: 100px;
+            background: #aCbEd0;
+            font-weight: bold;
+            color: white;
+            border: 0 none;
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 10px 5px;
+            margin: 10px 5px;
+        }
+
+            #msform .action-button-previous:hover, #msform .action-button-previous:focus {
+                box-shadow: 0 0 0 2px white, 0 0 0 3px #aCbEd0;
+            }
+
+    /*headings*/
+    .fs-title {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #2C3E50;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
+
+    .fs-subtitle {
+        font-weight: normal;
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    /*progressbar*/
+    #progressbar {
+        margin-bottom: 30px;
+        overflow: hidden;
+        /*CSS counters to number the steps*/
+        counter-reset: step;
+    }
+
+        #progressbar li {
+            list-style-type: none;
+            color: #666;
+            text-transform: uppercase;
+            font-size: 9px;
+            width: 33.33%;
+            float: left;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+            #progressbar li:before {
+                content: counter(step);
+                counter-increment: step;
+                width: 24px;
+                height: 24px;
+                line-height: 26px;
+                display: block;
+                font-size: 12px;
+                color: #333;
+                background: white;
+                border-radius: 25px;
+                margin: 0 auto 10px auto;
+            }
+
+            /*progressbar connectors*/
+            #progressbar li:after {
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: white;
+                position: absolute;
+                left: -50%;
+                top: 9px;
+                z-index: -1; /*put it behind the numbers*/
+            }
+
+            #progressbar li:first-child:after {
+                /*connector not needed before the first step*/
+                content: none;
+            }
+
+            /*marking active/completed steps blue*/
+            /*The number of the step and the connector before it = blue*/
+            #progressbar li.active:before, #progressbar li.active:after {
+                background: #2098ce;
+                color: white;
+            }
+
+    input[type="submit"] {
+        height: auto
+    }
+</style>
+
+
+<!-- Page Title -->
+<div class="page-title-area" style="display:none">
+    <img src="~/Content/auDeckTheme/assets/img/home-one/footer-car.png" alt="Title">
+    <div class="container">
+        <div class="page-title-content">
+            <h2>Get Offer</h2>
+            <ul>
+                <li>
+                    <a href="@Url.Action("Index", "Home")">Home</a>
+                </li>
+                <li>
+                    <i class='bx bx-chevron-right'></i>
+                </li>
+                <li>Get Offer</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+<!-- Offer AREA START -->
+<div class="blog-area pt-100 pb-100">
+    <div class="container">
+        <!-- MultiStep Form -->
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <h3>
+                    Sell Your Car Fast
+                </h3>
+                <p>You can enter your car info for an instant online quote if you are ready to sell within minutes.</p>
+                <h6 class="pt-4"><b>Over 200,000 Satisfied Customers</b></h6>
+                <p>We offer the best solution for customers to sell their car in a quick, easy and safe process.</p>
+                <div>
+                    <h5 class="pt-4"><i class='bx bx-world'></i> <b>Get an Offer Online</b></h5>
+                    <p>We offer a free online evaluation tool for you to get an instant quote on your car.</p>
+                </div>
+
+                <div>
+                    <h5 class="pt-4">
+                        <i class='bx bx-time'></i> <b>30 Minutes Or Less</b>
+                    </h5>
+                    <p>We value our customers and their time. You can also get your offer started online.</p>
+                </div>
+
+                <div>
+                    <h5 class="pt-4">
+                        <i class='bx bx-dollar'></i> <b>Get Paid Today</b>
+                    </h5>
+                    <p>
+                        Call us at (866) 227-3852 to get an offer!
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form id="msform" class="submitForm pb-5 pt-5" style=" background: aliceblue; border-radius: 20px;" action="@Url.Action("ResultPage","Home")" method="post">
+                    <input type="hidden" id="User_city" name="Usercity"  />
+                    <input type="hidden" id="User_state" name="Userstate"  />
+                    <input type="hidden" id="User_zipcode" name="Userzipcode" />
+
+
+                    <!-- progressbar -->
+
+                    <ul class="text-center" id="progressbar">
+                        <li class="active">VEHICLE INFORMATION</li>
+                        <li>MECHANICAL INFORMATION</li>
+                        <li>ACCOUNT SETUP</li>
+                    </ul>
+                    <!-- fieldsets -->
+                    <fieldset>
+                        <input type="hidden" id="FieldSetNumber" value="" />
+                        <h2 class="fs-title text-center">Vehicle Information</h2>
+                        <h3 class="fs-subtitle text-center">About The Vehicle</h3>
+                        <div class="row">
+                            <div class="col-md-12 text-left pb-4">
+                                <label class="form-label">Enter VIN</label>
+                                <input type="text" name="vin" oninput="searchByVin()" id="getVINnumber" class="form-control" placeholder="Enter your VIN" />
+                                <span class="text-success" id="vinTrue"></span>
+                                <span class="text-danger" id="vinFalse"></span>
+                                <img id="loaderForVin" src='~/Content/assets/images/loading.gif' width='40' style="margin-bottom: 2%; display: none" />
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Select Year:</label>
+                                <select class="form-select " name="Year" id="getYear">
+                                    <option value="">Select Year</option>
+                                    @for (int i = 2024; i >= 1940; i--)
+                                    {
+                                        <option>@i</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Select Make:</label>
+                                <select class="form-select " id="getMake" name="Make">
+                                    <option value="" selected>Select Make</option>
+                                    <option>ACURA</option>
+                                    <option>ALFA ROMEO</option>
+                                    <option>AMERICAN GENERAL</option>
+                                    <option>AMERICAN MOTORS</option>
+                                    <option>ASSEMBLY</option>
+                                    <option>ASTON MARTIN</option>
+                                    <option>AUDI</option>
+                                    <option>AUSTIN</option>
+                                    <option>AUTOBIANCHI</option>
+                                    <option>BENTLEY</option>
+                                    <option>BERTONE</option>
+                                    <option>BIG DOG</option>
+                                    <option>BLUEBIRD</option>
+                                    <option>BMW</option>
+                                    <option>BMW Motorrad</option>
+                                    <option>BRICKLAN</option>
+                                    <option>BUICK</option>
+                                    <option>CADILLAC</option>
+                                    <option>CHECKER</option>
+                                    <option>CHEVROLET</option>
+                                    <option>CHRYSLER</option>
+                                    <option>CLASSIC ROADSTER</option>
+                                    <option>COACH</option>
+                                    <option>CODA</option>
+                                    <option>CROSLEY</option>
+                                    <option>DAEWOO</option>
+                                    <option>DAIHATSU</option>
+                                    <option>DATSUN</option>
+                                    <option>DELOREAN</option>
+                                    <option>DESOTO</option>
+                                    <option>DODGE</option>
+                                    <option>DUCATI</option>
+                                    <option>EAGLE</option>
+                                    <option>ELDORADO</option>
+                                    <option>EXCALIBUR</option>
+                                    <option>FERRARI</option>
+                                    <option>FIAT</option>
+                                    <option>FISKER</option>
+                                    <option>FORD</option>
+                                    <option>FREIGHTLINER</option>
+                                    <option>GEM</option>
+                                    <option>GENESIS</option>
+                                    <option>GEO</option>
+                                    <option>GM</option>
+                                    <option>GMC</option>
+                                    <option>GOLF CART</option>
+                                    <option>HARLEY DAVIDSON</option>
+                                    <option>HONDA</option>
+                                    <option>HUMMER</option>
+                                    <option>HYUNDAI</option>
+                                    <option>INFINITI</option>
+                                    <option>INTERNATIONAL</option>
+                                    <option>ISUZU</option>
+                                    <option>JAGUAR</option>
+                                    <option>JEEP</option>
+                                    <option>KAWASAKI</option>
+                                    <option>KIA</option>
+                                    <option>LAFORZA</option>
+                                    <option>LAMBORGHINI</option>
+                                    <option>LANCIA</option>
+                                    <option>LAND ROVER</option>
+                                    <option>LEXUS</option>
+                                    <option>LINCOLN</option>
+                                    <option>LOTUS</option>
+                                    <option>MASERATI</option>
+                                    <option>MAYBACH</option>
+                                    <option>MAZDA</option>
+                                    <option>MCLAREN</option>
+                                    <option>MERCEDES-BENZ</option>
+                                    <option>MERCURY</option>
+                                    <option>MERKUR</option>
+                                    <option>MG</option>
+                                    <option>MGB</option>
+                                    <option>MINI</option>
+                                    <option>MITSUBISHI</option>
+                                    <option>MOTO GUZZI</option>
+                                    <option>NASH</option>
+                                    <option>NISSAN</option>
+                                    <option>NISSAN DIESEL</option>
+                                    <option>NORTH AMERICAN BUS</option>
+                                    <option>OLDSMOBILE</option>
+                                    <option>OPEL</option>
+                                    <option>OSHKOSH</option>
+                                    <option>PEUGEOT</option>
+                                    <option>PIERCE</option>
+                                    <option>PLYMOUTH</option>
+                                    <option>PONTIAC</option>
+                                    <option>PORSCHE</option>
+                                    <option>RAM TRUCKS</option>
+                                    <option>RANGE ROVER</option>
+                                    <option>RENAULT</option>
+                                    <option>ROADMASTER RAIL</option>
+                                    <option>ROLLS ROYCE</option>
+                                    <option>ROVER</option>
+                                    <option>SAAB</option>
+                                    <option>SALEEN</option>
+                                    <option>SATURN</option>
+                                    <option>SCION</option>
+                                    <option>SMART CARS</option>
+                                    <option>SPRINTER</option>
+                                    <option>STERLING</option>
+                                    <option>STUDEBAKER</option>
+                                    <option>SUBARU</option>
+                                    <option>SUZUKI</option>
+                                    <option>TESLA</option>
+                                    <option>TOYOTA</option>
+                                    <option>TRIUMPH</option>
+                                    <option>VOLKSWAGEN</option>
+                                    <option>VOLVO</option>
+                                    <option>WHEEGO</option>
+                                    <option>WILLY</option>
+                                    <option>YAMAHA</option>
+                                    <option>YUGO</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Select Model:</label>
+                                <select class="form-select " name="Model" id="getModel">
+                                    <option value="">Select Model</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Enter Zip Code</label>
+                                <input type="text" onchange="findLocation()" class="form-control" id="ZipCode" name="postalCode" placeholder="Enter Zip Code" maxlength="5"/>
+                                <img id="loadImg" src='~/Content/assets/images/loading.gif' width='40' style="margin-top: -2%; margin-left: -3%; display: none " />
+                                <span class="text-danger mb-3" id="location1"></span>
+                                <span class="text-success" id="location"></span>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Select Odometer Reading: <span class="text-danger">*</span></label>
+                                <select id="odometerReadings" name="odometerReadings" class="form-select" placeholder="Enter odometerReading" required>
+                                    <option value="" selected>Select Odometer Reading</option>
+                                    <option value="50000">Under 50,000</option>
+                                    <option value="100000">Under 100,000</option>
+                                    <option value="150000">Under 150,000</option>
+                                    <option value="200000">Under 200,000</option>
+                                    <option value="300000">Under 300,000</option>
+                                    <option value="350000">Unknown</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <h6 class="control-label">Select Wheel Type <span class="text-danger">*</span></h6>
+                                <select id="powerTrain" name="powerTrain" class="form-select" placeholder="Enter Power Train" required>
+                                    <option value="" selected>-- Select Wheel Type -- </option>
+                                    <option value="FWD">Front Wheel Drive</option>
+                                    <option value="RWD">Rear Wheel Drive</option>
+                                    <option value="AWD">All Wheel Drive</option>
+                                    <option value="4x4">4x4</option>
+                                    <option value="4x2">4x2</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 pb-4">
+                                <label class="form-label"> What kind of sale title type do you have? <span class="text-danger">*</span></label>
+                                <select name="Title" id="Title" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="Clean Title">Clean Title (CT)</option>
+                                    <option value="Salvage Title">Salvage Title (ST) </option>
+                                </select>
+                            </div>
+
+                            @*<div class="col-md-12 pb-4 text-left" >
+                                <label class="form-label"> Repair Cost <span class="text-danger">* (If you are unsure of your repair cost, tick the box)</span></label>
+                                <input type="number" name="RepairCost" id="RepairCost" class="form-select" placeholder="" />
+                                
+                                <input type="checkbox" name="CheckRepairCost" id="CheckRepairCost" style="width:auto"/>
+                                <label>Incomplete Repair Estimate</label>
+                                
+                            </div>*@
+                        </div>
+                        <input type="button" name="next" id="next-button" class="next action-button" value="Next" />
+                    </fieldset>
+
+                    <fieldset id="next-form">
+                        <input type="hidden" id="FieldSetNumber" value="" />
+                        <h2 class="fs-title text-center">Mechanical Information</h2>
+                        <h3 class="fs-subtitle text-center">Your vehicles Mechanical Information</h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" id="getCarYear" readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="getCarMake" readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="getCarModel" readonly />
+                            </div>
+
+                            <div class="col-md-12 pb-4">
+                                <label class="form-label">Does it moves forward and backward? <span class="text-danger">*</span></label>
+                                <select class="form-select" name="driveablestatus" id="driveablestatus" required>
+                                    <option value="">Select an Option</option>
+                                    <option value="D">YES</option>
+                                    <option value="N">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 pb-4" id="does70" style="display:none;">
+                                <label class="form-label"> Does it drives up to 70 miles / hr? </label>
+                                <select name="Doesitdrive" id="does70OdometerReading" class="form-select" placeholder="Select One">
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="MN">YES</option>
+                                    <option value="MC">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12 pb-4" id="doesStartdiv" style="display:none;">
+                                <label class="form-label"> Does it starts? </label>
+                                <select name="doesStart" id="doesStart" class="form-select" placeholder="Select One">
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="Y">YES</option>
+                                    <option value="N">NO </option>
+                                </select>
+                            </div>
+
+                            @*<div class="col-md-12 pb-4" id="engTransRem" style="display:none">
+                                <label class="form-label">Is any parts of the car including engine or transmission removed?</label>
+                                <select name="transRemove" id="transRemove" class="form-select" placeholder="Select One">
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="ST">YES</option>
+                                    <option value="MC">NO </option>
+                                </select>
+                            </div>*@
+                        </div>
+                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+
+                            <input type="button" name="next" class="next action-button" value="Next" />
+                    </fieldset>
+                    
+                    <fieldset>
+                        <input type="hidden" id="FieldSetNumber" value="" />
+                        <h2 class="fs-title text-center">Create your account</h2>
+                        <h3 class="fs-subtitle text-center">Fill in your credentials</h3>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="text" id="getCarYears" readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="getCarMakes" readonly />
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" id="getCarModels" readonly />
+                            </div>
+
+                            <div class="col-md-12 pb-4" id="engTransRem">
+                                <label class="form-label">Is any parts of the car including engine or transmission removed?</label>
+                                <select name="transRemove" id="transRemove" class="form-select" placeholder="Select One">
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="ST">YES</option>
+                                    <option value="MC">NO </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Front End Damage?</label>
+                                <select name="FrontEndDamage" id="FrontEndDamage" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="FR">YES</option>
+                                    <option value="NO">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Rear End Damage?</label>
+                                <select name="RearEndDamage" id="RearEndDamage" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="RR">YES</option>
+                                    <option value="NO">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Left Side Damage?</label>
+                                <select name="LeftSideDamage" id="LeftSideDamage" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="SD">YES</option>
+                                    <option value="NO">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Right Side Damage?</label>
+                                <select name="RightSideDamage" id="RightSideDamage" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="SD">YES</option>
+                                    <option value="NO">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Flood/Fire Damage?</label>
+                                <select name="FloodOrFireDamage" id="FloodOrFireDamage" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="BN-WA">YES</option>
+                                    <option value="NO">NO </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 pb-4">
+                                <label class="form-label">Airbag Deployed?</label>
+                                <select name="AirbagDeployed" id="AirbagDeployed" class="form-select" placeholder="Select One" required>
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="Y">YES</option>
+                                    <option value="N">NO </option>
+                                </select>
+                            </div>
+
+                            @*damage severity*@
+
+                            <div class="col-md-12 pb-4" id="DamageType" style="display: none;">
+                                <label class="form-label">Damage Severity</label>
+                                <select name="DamageSeverity" id="Damageseverity" class="form-select" placeholder="Select One">
+                                    <option value="">---- Select an Option ----</option>
+                                    <option value="H">High</option>
+                                    <option value="L">Low </option>
+                                    <option value="M">Medium </option>
+                                </select>
+                            </div>
+
+
+                            @*damage severity*@
+
+
+                        </div>
+
+                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <input type="submit" name="submit" class="submit action-button" value="Submit" />
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <!-- /.MultiStep Form -->
+    </div>
+</div>
+<!-- Offer AREA END -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@*<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4&callback=initAutocomplete&libraries=geometry,places&v=weekly"
+        defer>
+</script>*@
+
+@*<script>
+    $("#CheckRepairCost").on("click", function () {
+        check = $("#CheckRepairCost").is(":checked");
+        if (check) {
+            $("#RepairCost").val("");
+            $("#RepairCost").val("0.00");
+            $("#RepairCost").attr("readonly", true);
+        } else {
+            $("#RepairCost").val("");
+            $("#RepairCost").attr("readonly", false);
+        }
+    });
+        
+</script>*@
+
+<script>
+
+    //jQuery time
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+    var indexOfIncrementValue = 0;
+    console.log(indexOfIncrementValue);
+    $(".next").click(function () {
+        var getCarYear = $("#getYear").val();
+        var getCarMake = $("#getMake").val();
+        var getCarModel = $("#getModel").val();
+
+        indexOfIncrementValue = indexOfIncrementValue + 1;
+        if (indexOfIncrementValue == 1) {
+            var ZipCode = $("#ZipCode").val();
+            var odometerReadings = $("#odometerReadings").val();
+            var powerTrain = $("#powerTrain").val();
+            var Title = $("#Title").val();
+            //var repairCost = $("#RepairCost").val();
+            if (getCarYear == "" || getCarYear == null ||
+                getCarMake == "" || getCarMake == null ||
+                getCarModel == "" || getCarModel == null ||
+                ZipCode == "" || ZipCode == null ||
+                odometerReadings == "" || odometerReadings == null ||
+                powerTrain == "" || powerTrain == null ||
+                Title == "" || Title == null) {
+                alert("Please Fill All Fields First");
+                indexOfIncrementValue = indexOfIncrementValue - 1;
+                return false;
+            }
+        }
+        if (indexOfIncrementValue == 2) {
+            var driveablestatus = $("#driveablestatus").val();
+            //var anyPartIsRemoved = $("#AnyPartIsRemoved").val();
+            if (driveablestatus == "" || driveablestatus == null) {
+                alert("Please Fill All Fields First");
+                indexOfIncrementValue = indexOfIncrementValue - 1;
+                return false;
+            }
+            //if (anyPartIsRemoved == "" || anyPartIsRemoved == null) {
+            //    alert("Please Fill All Fields First");
+            //    indexOfIncrementValue = indexOfIncrementValue - 1;
+            //    return false;
+            //}
+            if ($("#does70").hasClass("active")) {
+                var does70OdometerReading = $("#does70OdometerReading").val();
+                if (does70OdometerReading == "" || does70OdometerReading == null) {
+                    alert("Please Fill All Fields First");
+                    indexOfIncrementValue = indexOfIncrementValue - 1;
+                    return false;
+                }
+            }
+            if ($("#doesStartdiv").hasClass("active")) {
+                var doesStart = $("#doesStart").val();
+                if (doesStart == "" || doesStart == null) {
+                    alert("Please Fill All Fields First");
+                    indexOfIncrementValue = indexOfIncrementValue - 1;
+                    return false;
+                }
+            }
+            //if ($("#engTransRem").hasClass("active")) {    // it should move to form 3
+            //    var engTransRem = $("#transRemove").val();
+            //    if (engTransRem == "" || engTransRem == null) {
+            //        alert("Please Fill All Fields First");
+            //        indexOfIncrementValue = indexOfIncrementValue - 1;
+            //        return false;
+            //    }
+            //}
+        }
+
+        if (indexOfIncrementValue == 3) {
+            var FrontEndDamage = $("#FrontEndDamage").val();
+            var RearEndDamage = $("#RearEndDamage").val();
+            var LeftSideDamage = $("#LeftSideDamage").val();
+            var RightSideDamage = $("#RightSideDamage").val();
+            var FloodOrFireDamage = $("#FloodOrFireDamage").val();
+            var AirbagDeployed = $("#AirbagDeployed").val();
+            var engTransRem = $("#transRemove").val();//babar
+            if (FrontEndDamage == "" || FrontEndDamage == null ||
+                RearEndDamage == "" || RearEndDamage == null ||
+                LeftSideDamage == "" || LeftSideDamage == null ||
+                RightSideDamage == "" || RightSideDamage == null ||
+                FloodOrFireDamage == "" || FloodOrFireDamage == null ||
+                AirbagDeployed == "" || AirbagDeployed == null || engTransRem == null || engTransRem=="") {
+                alert("Please Fill All Fields First");
+                indexOfIncrementValue = indexOfIncrementValue - 1;
+                return false;
+            }
+        }
+        $("#FieldSetNumber").val();
+        //if (animating) return false;
+        //animating = true;
+
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+
+
+        console.log(getCarYear);
+        console.log(getCarMake);
+        console.log(getCarModel);
+        $("#getCarYear").val(getCarYear);
+        $("#getCarMake").val(getCarMake);
+        $("#getCarModel").val(getCarModel);
+        $("#getCarYears").val(getCarYear);
+        $("#getCarMakes").val(getCarMake);
+        $("#getCarModels").val(getCarModel);
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        //hide current fieldset
+        current_fs.css({
+            'transform': 'scale(' + scale + ')',
+            'position': 'absolute'
+        });
+        current_fs.hide();
+        //show the next fieldset
+        next_fs.css({ 'left': left, 'opacity': opacity });
+        next_fs.show();
+        //hide the current fieldset with style
+        //current_fs.animate({ opacity: 0 }, {
+        //    step: function (now, mx) {
+        //        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //        //1. scale current_fs down to 80%
+        //        scale = 1 - (1 - now) * 0.2;
+        //        //2. bring next_fs from the right(50%)
+        //        left = (now * 50) + "%";
+        //        //3. increase opacity of next_fs to 1 as it moves in
+        //        opacity = 1 - now;
+        //        current_fs.css({
+        //            'transform': 'scale(' + scale + ')',
+        //            'position': 'absolute'
+        //        });
+        //        next_fs.css({ 'left': left, 'opacity': opacity });
+        //    },
+        //    duration: 800,
+        //    complete: function () {
+        //        current_fs.hide();
+        //        animating = false;
+        //    },
+        //    //this comes from the custom easing plugin
+        //    easing: 'easeInOutBack'
+        //});
+    });
+
+    $(".previous").click(function () {
+        //if (animating) return false;
+        //animating = true;
+        indexOfIncrementValue = indexOfIncrementValue - 1;
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+        //hide the current fieldset
+        current_fs.hide();
+        current_fs.css({
+            'left': left,
+        });
+        //show the previous fieldset
+        previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity, 'position': 'inherit' });
+        previous_fs.show();
+        //hide the current fieldset with style
+        //current_fs.animate({ opacity: 0 }, {
+        //    step: function (now, mx) {
+        //        //as the opacity of current_fs reduces to 0 - stored in "now"
+        //        //1. scale previous_fs from 80% to 100%
+        //        scale = 0.8 + (1 - now) * 0.2;
+        //        //2. take current_fs to the right(50%) - from 0%
+        //        left = ((1 - now) * 50) + "%";
+        //        //3. increase opacity of previous_fs to 1 as it moves in
+        //        opacity = 1 - now;
+        //        current_fs.css({
+        //            'left': left,
+        //        });
+        //        previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity, 'position': 'inherit' });
+        //    },
+        //    duration: 800,
+        //    complete: function () {
+        //        current_fs.hide();
+        //        animating = false;
+        //    },
+        //    //this comes from the custom easing plugin
+        //    easing: 'easeInOutBack'
+        //});
+    });
+
+</script>
+
+<script>
+    //        ======>    API     AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4     API      <======
+
+    //  1N4AL3AP4DC295509
+    //  4T1BK1EB6DU056165
+    //  KM8JM12D56U303366
+    //  5NMSH73E88H134350
+    //  1GTHK29U74E341306
+    //  JTLKT324X64085338
+    //  2HGEJ6446YH110899
+    //  JN8AS5MT2DW022816
+    //  3FADP4BJ2FM195587
+    //  1G6AF5SX6D0125409
+
+    //Get Value of Year
+    $("#getYear").change(function () {
+        var year = $(this).val();
+    });
+
+    $("#getMake").change(function () {
+        var make = $(this).val();
+        $("#MakeofCar").val(make);
+        $.ajax({
+            url: "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/" + make + "?format=json",
+            type: "GET",
+            dataType: "json",
+            success: function (result, status) {
+                $('#getModel').html($('<option>', {
+                    value: "",
+                    text: "---- Select a Model ----"
+                }));
+
+                $.each(result.Results, function (i, item) {
+                    $('#getModel').append($('<option>', {
+                        value: item.Model_Name,
+                        text: item.Model_Name
+                    }));
+                });
+            },
+            error: function () {
+            }
+        });
+    });
+
+    //Get Model of car
+    $("#getModel").change(function () {
+        var model = $(this).val();
+        $("#ModelofCar").val(model);
+    });
+
+    function searchByVin() {
+        debugger;
+        $("#vinTrue").text('');
+        var val = $("#getVINnumber").val();
+
+        if (val != null && val != "") {
+            $("#loaderForVin").show();
+            $.ajax({
+                url: "https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVINValuesBatch/",
+                type: "POST",
+                data: { format: "json", data: val },
+                dataType: "json",
+                success: function (result, status) {
+                    console.log("VIN Response", result.Results);
+                    if (result.Results[0].ErrorCode == "0") {
+                        $("#vinFalse").text('');
+                        $("#vinTrue").text(result.Results[0].ModelYear + ' ' + result.Results[0].Make + ' ' + result.Results[0].Model);
+                        $("#getYear").val(result.Results[0].ModelYear).change();
+                        $("#getMake").val(result.Results[0].Make).change();
+                        var getModel = result.Results[0].Model;
+
+                        $.ajax({
+                            url: "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/" + result.Results[0].Make + "?format=json",
+                            type: "GET",
+                            dataType: "json",
+                            success: function (result, status) {
+                                $('#getModel').html($('<option>', {
+                                    value: "",
+                                    text: "Select a Model"
+                                }));
+
+                                $.each(result.Results, function (i, item) {
+                                    $('#getModel').append($('<option>', {
+                                        value: item.Model_Name,
+                                        text: item.Model_Name
+                                    }));
+                                });
+                                $("#getModel").val(getModel);
+                            },
+                            error: function () {
+                            }
+                        });
+                        $("#YearofCar").val(result.Results[0].ModelYear);
+                        $("#MakeofCar").val(result.Results[0].Make);
+                        $("#ModelofCar").val(result.Results[0].Model);
+                        $("#loaderForVin").hide();
+                    } else {
+                        $("#vinTrue").text('');
+                        $("#vinFalse").text('Not Found');
+                        $("#loaderForVin").hide();
+                    }
+                },
+                error: function () {
+                    $("#vinTrue").text('');
+                    $("#vinFalse").text('Not Found');
+                    $("#loaderForVin").hide();
+                }
+            });
+        }
+    }
+</script>
+
+<script>
+    //       AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4
+    var api = 'https://maps.googleapis.com/maps/api/geocode/json';
+    var countrycodeapi = 'https://restcountries.com/v2/alpha/{code}';
+    var button = document.getElementById('ajax-button');
+    //button.addEventListener("click", findLocation());
+
+    function findLocation() {
+        debugger;
+        var ZipCode = document.getElementById('ZipCode').value;
+        var url = api + "?address=" + ZipCode + "&key=AIzaSyBZXUxsPREgv13fH4iD1_Nmj624kdMvhw4";
+        var geocoder = new google.maps.Geocoder();
+        $("#loadImg").show();
+        geocoder.geocode({ 'address': ZipCode },
+            function (results, status) {
+                if (status == 'OK') {
+
+                    var x = results[0].formatted_address;
+                    var   zpcode = results[0].address_components[0].long_name;
+                    var  cty = results[0].address_components[1].long_name;
+                    var state = results[0].address_components[3].long_name;
+
+
+
+                    //var x = results[0].postcode_localities;
+                    //  alert(x);
+                    //ViewBag.ZipCodeAddress = x;
+                    $('#location1').text("");
+                    $('#location').text(x);
+                    /*document.getElementById("location").style.color = "green";     .css('color' : 'green');   */
+
+
+                    $('#User_city').val(cty);
+                    $('#User_state').val(state);
+                    $('#User_zipcode').val(zpcode);
+
+                    $("#loadImg").hide();
+                } else {
+                    $('#location').text("");
+                    $('#location1').text("Not Found!");
+                    $("#loadImg").hide();
+                }
+            });
+    }
+
+    function showLoading() {
+        //$('#location').text("loading........");
+        var target = document.getElementById('location');
+        target.innerHTML = 'loading........';
+    }
+
+    function outputLocation(data) {
+        var targer = document.getElementById('location');
+        var json = JSON.parse(data);
+        var address = json.results[0].formatted_address;
+        targer.innerHTML = address;
+    }
+    //var button = document.getElementById('ajax-button');
+    //button.addEventListener("click", findLocation());
+</script>
+
+<script>
+    // checking country code validity
+    function Countrycodevalidate() {
+        /*debugger*/
+        var countryISO = $('#CountryCode').val();//1 complete
+        $.ajax({
+            type: 'POST',
+            url:  '@Url.Action("CheckCountryCode", "Ajax")', /*"../Ajax/GetUserById",*/
+            dataType: "json",
+            data: {
+                //   2
+                Countrycode: countryISO,
+            },
+            dataType: "json",
+            success: function (CC) {
+                if (CC != "") {
+                    $('#countrycodefalse').text('');
+                    $('#countrycodetrue').text(CC);
+                }
+                else
+                {
+                    $("#countrycodetrue").text('');
+                    $("#countrycodefalse").text("your code Does Not matched with USA ISO Code");
+                }
+            },
+            error: function () {
+                alert("sbc");
+            }
+        }); // Submit the form
+    }
+</script>
+
+<script>
+    $("[name='driveablestatus']").change(function () {
+        var val = $(this).val();
+        console.log("drivablestatus: ", val);
+        if (val == "D") {
+            $("#doesStartdiv").css("display", "none");
+            $("#does70").css("display", "block");
+            //$("#engTransRem").css("display", "none");
+            //$("#TransRem").css("display", "none");
+
+            if ($("#doesStartdiv").hasClass("active")) {
+                $("#doesStartdiv").removeClass("active");
+            }
+
+            $("#does70").addClass("active");
+        }
+        else {
+            $("#doesStartdiv").css("display", "block");
+            $("#does70").css("display", "none");
+            if ($("#does70").hasClass("active")) {
+                $("#does70").removeClass("active");
+            }
+            $("#doesStartdiv").addClass("active");
+        }
+        $("#does70OdometerReading").val("").change();
+        $("#doesStartdiv").val("").change();
+        $("#does70").val("").change();
+        //$("#engTransRem").val("").change(); //babar
+       // $("#TransRem").val("").change();  //babar
+        $("[name='odometerReading']").attr("checked", false);
+    });
+
+
+    //$("[name='doesStart']").change(function () {
+    //    var val = $(this).val();
+
+    //    if (val == "Y") {
+    //        //$("#engTransRem").css("display", "block"); //babar
+    //        //$("#engTransRem").addClass("active");
+    //    }
+    //    else {
+    //        $("#engTransRem").css("display", "none");
+    //        $("#transRemove").val(""); //babar
+            
+    //        if ($("#engTransRem").hasClass("active")) {
+    //            $("#engTransRem").removeClass("active");
+    //        }
+    //    }
+
+    //    $("#engTransRem").val("").change();
+    //    $("[name='transRemove']").attr('checked', false);
+    //});
+</script>
+
+
+<script>
+    // Get the next form element
+    var nextForm = document.getElementById('next-form');
+    // Add a click event listener to the next button
+    document.getElementById('next-button').addEventListener('click', function () {
+        // Scroll to the top of the next form
+        nextForm.scrollIntoView();
+    });
+</script>
+
+
+<script>
+    // Get references to both dropdown elements
+    const FrontEndDamage = document.querySelector('#FrontEndDamage');
+    const RearEndDamage = document.querySelector('#RearEndDamage');
+    const LeftSideDamage = document.querySelector('#LeftSideDamage');
+    const RightSideDamage = document.querySelector('#RightSideDamage');
+    const FloodOrFireDamage = document.querySelector('#FloodOrFireDamage');
+
+    const DamageType = document.querySelector('#DamageType');
+    
+
+
+
+    // Listen for changes to the first dropdown
+    FrontEndDamage.addEventListener('change', function () {
+        // If "Option 2" is selected, show the second dropdown
+        debugger;
+        var FrontEndDamageOption = $('#FrontEndDamage option:selected').text();
+        var RearEndDamageOption = $('#RearEndDamage option:selected').text();
+        var LeftSideDamageOption = $('#LeftSideDamage option:selected').text();
+        var RightSideDamageOption = $('#RightSideDamage option:selected').text();
+
+
+
+        if (FrontEndDamageOption == 'YES' || RearEndDamageOption == 'YES' || LeftSideDamageOption == 'YES' || RightSideDamageOption == 'YES') {
+            DamageType.style.display = 'block';
+            document.getElementById('FrontEndDamage').required = true;
+            $('#Damageseverity').prop('required', true);
+        } else {
+            // Otherwise, hide the second dropdown
+            DamageType.style.display = 'none';
+            $('#Damageseverity').val("");
+            $('#Damageseverity').prop('required', false);
+        }
+    });
+
+    RearEndDamage.addEventListener('change', function () {
+        // If "Option 2" is selected, show the second dropdown
+        debugger;
+        var FrontEndDamageOption = $('#FrontEndDamage option:selected').text();
+        var RearEndDamageOption = $('#RearEndDamage option:selected').text();
+        var LeftSideDamageOption = $('#LeftSideDamage option:selected').text();
+        var RightSideDamageOption = $('#RightSideDamage option:selected').text();
+
+
+
+        if (FrontEndDamageOption == 'YES' || RearEndDamageOption == 'YES' || LeftSideDamageOption == 'YES' || RightSideDamageOption == 'YES') {
+            DamageType.style.display = 'block';
+            $('#Damageseverity').prop('required', true);
+
+
+        } else {
+            // Otherwise, hide the second dropdown
+            DamageType.style.display = 'none';
+            $('#Damageseverity').val("");
+            $('#Damageseverity').prop('required', false);
+
+        }
+    });
+
+    LeftSideDamage.addEventListener('change', function () {
+        // If "Option 2" is selected, show the second dropdown
+        debugger;
+        var FrontEndDamageOption = $('#FrontEndDamage option:selected').text();
+        var RearEndDamageOption = $('#RearEndDamage option:selected').text();
+        var LeftSideDamageOption = $('#LeftSideDamage option:selected').text();
+        var RightSideDamageOption = $('#RightSideDamage option:selected').text();
+
+
+
+        if (FrontEndDamageOption == 'YES' || RearEndDamageOption == 'YES' || LeftSideDamageOption == 'YES' || RightSideDamageOption == 'YES') {
+            DamageType.style.display = 'block';
+            $('#Damageseverity').prop('required', true);
+
+        } else {
+            // Otherwise, hide the second dropdown
+            DamageType.style.display = 'none';
+            $('#Damageseverity').val("");
+            $('#Damageseverity').prop('required', false);
+
+        }
+    });
+
+    RightSideDamage.addEventListener('change', function () {
+        // If "Option 2" is selected, show the second dropdown
+        debugger;
+        var FrontEndDamageOption = $('#FrontEndDamage option:selected').text();
+        var RearEndDamageOption = $('#RearEndDamage option:selected').text();
+        var LeftSideDamageOption = $('#LeftSideDamage option:selected').text();
+        var RightSideDamageOption = $('#RightSideDamage option:selected').text();
+
+
+
+        if (FrontEndDamageOption == 'YES' || RearEndDamageOption == 'YES' || LeftSideDamageOption == 'YES' || RightSideDamageOption == 'YES') {
+            DamageType.style.display = 'block';
+            $('#Damageseverity').prop('required', true);
+
+        } else {
+            DamageType.style.display = 'none';
+            $('#Damageseverity').val("");
+
+            $('#Damageseverity').prop('required', false);
+
+        }
+    });
+
+
+    FloodOrFireDamage.addEventListener('change', function () {
+        // If "Option 2" is selected, show the second dropdown
+        debugger;
+        var FrontEndDamageOption = $('#FrontEndDamage option:selected').text();
+        var RearEndDamageOption = $('#RearEndDamage option:selected').text();
+        var LeftSideDamageOption = $('#LeftSideDamage option:selected').text();
+        var RightSideDamageOption = $('#RightSideDamage option:selected').text();
+        var WaterFloodDamage = $('#FloodOrFireDamage option:selected').text();
+
+
+
+        if (WaterFloodDamage=='YES'  || FrontEndDamageOption == 'YES' || RearEndDamageOption == 'YES' || LeftSideDamageOption == 'YES' || RightSideDamageOption == 'YES') {
+            DamageType.style.display = 'block';
+            $('#Damageseverity').prop('required', true);
+
+        } else {
+            // Otherwise, hide the second dropdown
+            DamageType.style.display = 'none';
+            $('#Damageseverity').val("");
+
+            $('#Damageseverity').prop('required', false);
+
+        }
+    });
+
+</script>

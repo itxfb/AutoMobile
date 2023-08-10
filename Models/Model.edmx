@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="nvarchar" MaxLength="20" />
+          <Property Name="Make" Type="nvarchar" MaxLength="255" />
+          <Property Name="Model" Type="nvarchar" MaxLength="255" />
+          <Property Name="postalCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="Doesitdrive" Type="nvarchar" MaxLength="255" />
+          <Property Name="Userstate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Userzipcode" Type="nvarchar" MaxLength="255" />
+          <Property Name="transRemove" Type="nvarchar" MaxLength="255" />
+          <Property Name="HasKey" Type="nvarchar" MaxLength="255" />
+          <Property Name="odometerReadings" Type="nvarchar" MaxLength="20" />
+          <Property Name="SalePrice" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="vin" Type="nvarchar(max)" />
+          <Property Name="driveablestatus" Type="nvarchar(max)" />
+          <Property Name="doesStart" Type="nvarchar(max)" />
+          <Property Name="powerTrain" Type="nvarchar(max)" />
+          <Property Name="FrontEndDamage" Type="nvarchar(max)" />
+          <Property Name="RearEndDamage" Type="nvarchar(max)" />
+          <Property Name="LeftSideDamage" Type="nvarchar(max)" />
+          <Property Name="RightSideDamage" Type="nvarchar(max)" />
+          <Property Name="FloodOrFireDamage" Type="nvarchar(max)" />
+          <Property Name="AirbagDeployed" Type="nvarchar(max)" />
+          <Property Name="AnyPartIsRemoved" Type="nvarchar(max)" />
+          <Property Name="Usercity" Type="nvarchar(max)" />
+          <Property Name="DamageSeverity" Type="nvarchar(max)" />
+          <Property Name="RepairCost" Type="nvarchar(max)" />
+          <Property Name="Field1" Type="nvarchar(max)" />
+          <Property Name="Field2" Type="nvarchar(max)" />
+          <Property Name="Field3" Type="nvarchar(max)" />
+          <Property Name="Field4" Type="nvarchar(max)" />
+          <Property Name="Field5" Type="nvarchar(max)" />
+          <Property Name="UserCarDetailId" Type="int" />
+          <Property Name="IsActive" Type="int" />
+        </EntityType>
+        <EntityType Name="CarImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
+          <Property Name="UserDetailId" Type="int" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar(max)" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="IsActive" Type="int" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="255" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Role" Type="int" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserCarDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MidName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="VehicleAddress" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="int" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="UserContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsRejected" Type="int" />
+          <Property Name="UserSignature" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="CarDetail" EntityType="Self.CarDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarImages" EntityType="Self.CarImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCarDetails" EntityType="Self.UserCarDetails" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="postalCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Doesitdrive" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Userstate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Userzipcode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="transRemove" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HasKey" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="odometerReadings" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SalePrice" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="vin" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="driveablestatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="doesStart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="powerTrain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FrontEndDamage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RearEndDamage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LeftSideDamage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RightSideDamage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FloodOrFireDamage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AirbagDeployed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnyPartIsRemoved" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Usercity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DamageSeverity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RepairCost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Field1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Field2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Field3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Field4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Field5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserCarDetailId" Type="Int32" />
+          <Property Name="IsActive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CarImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserDetailId" Type="Int32" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="IsActive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserCarDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MidName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="UserContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsRejected" Type="Int32" />
+          <Property Name="UserSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarDetails" EntityType="Self.CarDetail" />
+          <EntitySet Name="CarImages" EntityType="Self.CarImage" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserCarDetails" EntityType="Self.UserCarDetail" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="CarDetails">
+            <EntityTypeMapping TypeName="DatabaseModel.CarDetail">
+              <MappingFragment StoreEntitySet="CarDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+                <ScalarProperty Name="Doesitdrive" ColumnName="Doesitdrive" />
+                <ScalarProperty Name="Userstate" ColumnName="Userstate" />
+                <ScalarProperty Name="Userzipcode" ColumnName="Userzipcode" />
+                <ScalarProperty Name="transRemove" ColumnName="transRemove" />
+                <ScalarProperty Name="HasKey" ColumnName="HasKey" />
+                <ScalarProperty Name="odometerReadings" ColumnName="odometerReadings" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="vin" ColumnName="vin" />
+                <ScalarProperty Name="driveablestatus" ColumnName="driveablestatus" />
+                <ScalarProperty Name="doesStart" ColumnName="doesStart" />
+                <ScalarProperty Name="powerTrain" ColumnName="powerTrain" />
+                <ScalarProperty Name="FrontEndDamage" ColumnName="FrontEndDamage" />
+                <ScalarProperty Name="RearEndDamage" ColumnName="RearEndDamage" />
+                <ScalarProperty Name="LeftSideDamage" ColumnName="LeftSideDamage" />
+                <ScalarProperty Name="RightSideDamage" ColumnName="RightSideDamage" />
+                <ScalarProperty Name="FloodOrFireDamage" ColumnName="FloodOrFireDamage" />
+                <ScalarProperty Name="AirbagDeployed" ColumnName="AirbagDeployed" />
+                <ScalarProperty Name="AnyPartIsRemoved" ColumnName="AnyPartIsRemoved" />
+                <ScalarProperty Name="Usercity" ColumnName="Usercity" />
+                <ScalarProperty Name="DamageSeverity" ColumnName="DamageSeverity" />
+                <ScalarProperty Name="RepairCost" ColumnName="RepairCost" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field4" ColumnName="Field4" />
+                <ScalarProperty Name="Field5" ColumnName="Field5" />
+                <ScalarProperty Name="UserCarDetailId" ColumnName="UserCarDetailId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarImages">
+            <EntityTypeMapping TypeName="DatabaseModel.CarImage">
+              <MappingFragment StoreEntitySet="CarImages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="DatabaseModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="DatabaseModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DatabaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCarDetails">
+            <EntityTypeMapping TypeName="DatabaseModel.UserCarDetail">
+              <MappingFragment StoreEntitySet="UserCarDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MidName" ColumnName="MidName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="VehicleAddress" ColumnName="VehicleAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="UserContact" ColumnName="UserContact" />
+                <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+                <ScalarProperty Name="UserSignature" ColumnName="UserSignature" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
